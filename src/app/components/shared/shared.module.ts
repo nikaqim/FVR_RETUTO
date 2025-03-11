@@ -10,7 +10,6 @@ import { WalkthroughModule } from 'angular-walkthrough';
 import { ButtonsModule } from 'nextsapien-component-lib';
 import { BtnGroupComponent } from './btn-group/btn-group.component';
 import { ButtonComponent } from './button/button.component';
-import { TutoWalkthroughModule } from '../tuto-walkthrough/tuto-walkthrough.module';
 import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 import { CyranoTutorialModule } from 'cyranoTutorial';
 

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { MainScreenModule } from './components/main-screen/main-screen.module';
-import { TutoWalkthroughModule } from './components/tuto-walkthrough/tuto-walkthrough.module';
+import { CyranoWalkthroughModule } from './components/cyrano-walkthrough/cyrano-walkthrough.module';
 import { StartScreenModule } from './components/start-screen/start-screen.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -19,7 +19,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     SharedModule,
     StartScreenModule,
     MainScreenModule,
-    TutoWalkthroughModule
+    CyranoWalkthroughModule
   ],
   providers: [
     provideAnimationsAsync()

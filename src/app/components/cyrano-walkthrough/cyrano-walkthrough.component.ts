@@ -61,7 +61,6 @@ export class CyranoWalkthroughComponent implements
       this.subs.add(
         WalkthroughComponent.onNavigate
         .subscribe((comt: WalkthroughNavigate) => {
-          console.log(`${comt.previous.id} is navigating`);
           const current = this.tutoService.getById(comt.next.id);
           this.activeId = comt.next.id;
           if(current){
@@ -73,13 +72,9 @@ export class CyranoWalkthroughComponent implements
       this.subs.add(
         this.tutoService.onSwiperChanged()
           .subscribe((screen:string) => {
-          console.log(`setting ${screen} as active..`);
+
+          // `setting ${screen} as active..`
           this.activeScreenId = screen;
-          // const targetEl = this.navElements.find(el => el.nativeElement.id === screen);
-          // if(targetEl){
-          //   targetEl.nativeElement.classList.
-          // }
-  
         })
       );
   
@@ -183,7 +178,9 @@ export class CyranoWalkthroughComponent implements
   navigateWalkThru(){    
     const current = this.tutoService.getById(this.activeId);
 
-    if(current && current.nextStep.id){
+    console.log("current:",current);
+
+    if(current && current.nextStep){
       console.log("click on container", this.tutoService.getScreenById(current.nextStep.id));
       this.tutoService.scrollIntoView(this.tutoService.getScreenById(current.nextStep.id));
       WalkthroughComponent.walkthroughNext();  

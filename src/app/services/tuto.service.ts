@@ -141,6 +141,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
 
   scrollIntoView(elementId:string){
     const parentEl = document.getElementById(elementId);
+    console.log("Scroll to el ->", parentEl);
       if(parentEl){
         parentEl.scrollIntoView({
           behavior: 'smooth',
