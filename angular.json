@@ -27,6 +27,13 @@
             "outputPath": "dist/reusetuto",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "google-libphonenumber",
+              "moment",
+              "inputmask",
+              "jsoneditor",
+              "nextsapien-component-lib"
+            ],
             "polyfills": [
               "zone.js"
             ],
@@ -49,6 +56,10 @@
           },
           "configurations": {
             "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",

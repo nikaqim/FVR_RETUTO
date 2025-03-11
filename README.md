@@ -75,4 +75,22 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ---
 
+## Deploy Vercel
+Deploy Manually Using Vercel CLI
+- Install Vercel CLI if you haven’t already:
+        npm install -g vercel
+
+- Navigate to your Angular project folder and log in:
+        vercel login
+
+- Deploy the specific branch:
+        git checkout your-branch
+
+- vercel --prod
+- Or for a preview deployment:
+        vercel
+        
+This will generate a preview URL where you can see your changes.
+
+
 Let me know if you want me to package this into a **`.md` file** that you can download directly. 😊
