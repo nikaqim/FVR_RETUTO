@@ -70,7 +70,7 @@ export class TutoWalkthroughComponent implements OnInit, AfterViewInit, OnDestro
           const current = this.tutoService.getById(comt.next.id);
 
           if(current){
-            this.tutoService.notifyTutoNavigation(current.focusElementSelector)
+            this.tutoService.notifyTutoNavigation(current)
           }
         })
       );

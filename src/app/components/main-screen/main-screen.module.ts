@@ -4,7 +4,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ButtonsModule } from 'nextsapien-component-lib';
 
 import { MainScreenComponent } from './main-screen.component';
-import { TutoWalkthroughModule } from '../tuto-walkthrough/tuto-walkthrough.module';
+// import { TutoWalkthroughModule } from '../tuto-walkthrough/tuto-walkthrough.module';
+import { CyranoWalkthroughModule } from '../cyrano-walkthrough/cyrano-walkthrough.module';
 
 @NgModule({
   declarations: [MainScreenComponent],
@@ -12,7 +13,7 @@ import { TutoWalkthroughModule } from '../tuto-walkthrough/tuto-walkthrough.modu
     CommonModule,
     SharedModule,
     ButtonsModule,
-    TutoWalkthroughModule
+    CyranoWalkthroughModule
   ], 
   bootstrap: [MainScreenComponent]
 })

@@ -15,12 +15,15 @@ import { Subscription } from 'rxjs';
 import { ButtonGroup } from '../shared/btn-group/btn-group.model';
 import { BtnGroupService } from '../../services/btn.service';
 import { BtnGroupConfig } from '../shared/btn-group/btn-group-config.model';
-import { TutoService } from '../../services/tuto.service';
-import { CyranoTutorialService } from 'cyranoTutorial';
 import { TranslateService } from '@ngx-translate/core';
 
-import { CyranoTutorial } from 'cyranoTutorial';
-import { CyranoTutorialConfig } from 'cyranoTutorial';
+// import { CyranoTutorialService } from 'cyranoTutorial';
+// import { CyranoTutorial } from 'cyranoTutorial';
+// import { CyranoTutorialConfig } from 'cyranoTutorial';
+
+import { CyranoTutorial } from '../../model/cyrano-walkthrough.model';
+import { CyranoTutorialConfig } from '../../model/cyrano-walkthrough-cfg.model';
+import { TutoService } from '../../services/tuto.service';
 
 @Component({
   selector: 'app-main-screen',
@@ -54,7 +57,6 @@ export class MainScreenComponent implements OnInit, OnChanges {
   constructor(
     private btnGroupService: BtnGroupService,
     private walkService: TutoService,
-    private tutService: CyranoTutorialService
   ){
     this.btnGroupService.getButtonConfig().subscribe((data:BtnGroupConfig) => {
       this.buttonGroup = data['btngroup'];
@@ -64,7 +66,7 @@ export class MainScreenComponent implements OnInit, OnChanges {
       console.log('tuto data -> ',data)
       this.tutoData = data;
 
-      this.steps = this.tutService.tabulateStep(this.tutoData);
+      this.steps = this.walkService.tabulateStep(this.tutoData);
       console.log('steps:', this.steps);
       
     });
