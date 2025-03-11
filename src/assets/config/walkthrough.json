@@ -1,0 +1,59 @@
+{
+    "Intro": [
+        {
+            "id":"walk1",
+            "nextStepId": "walk2",
+            "focusElementId": "#forfeit",
+            "contentAlign": "left",
+            "contentVertAlign": "below",
+            "showArrow": true,
+            "closeAnywhere": false,
+            "showFinishBtn": true,
+            "textDescr": "1. Lorem ipsum<b>dolor sit amet</b>,<br/>color sit ametdolor sit ametdolor sit ametdolor sit amet consectetur adipiscing elit."
+        }
+    ],
+    "Timer": [
+    {
+        "id":"walk2",
+        "prevStepId":"walk1",
+        "nextStepId": "walk3",
+        "focusElementId": "#help",
+        "contentAlign": "center",
+        "contentVertAlign": "below",
+        "showArrow": true,
+        "closeAnywhere": false,
+        "showFinishBtn": true,
+        "textDescr": "This is placeholder text often used<br/> in design templates to <br/>represent future content"
+    }], 
+    "Alert": [
+    {
+        "id":"walk3",
+        "prevStepId":"walk2",
+        "nextStepId": "walk4",
+        "focusElementId": "#selfie",
+        "contentAlign": "left",
+        "contentVertAlign": "above",
+        "showArrow": true,
+        "closeAnywhere": false,
+        "showFinishBtn": true,
+        "textDescr": "Bienvenue à la première étape du tutoriel. Suivez le guide pour en savoir plus."
+    }],
+    "Selfie": [
+    {
+        "id":"walk4",
+        "prevStepId":"walk3",
+        "focusElementId": "#chat",
+        "contentAlign": "left",
+        "contentVertAlign": "below",
+        "showArrow": true,
+        "closeAnywhere": false,
+        "showFinishBtn": true,
+        "textDescr": "Bienvenue à la première étape du tutoriel. Suivez le guide pour en savoir plus."
+    }],
+    "Video": [],
+    "Outfit": [],
+    "Chat": [],
+    "Meetup Started": [],
+    "Prep": [],
+    "Tutorial": []
+}

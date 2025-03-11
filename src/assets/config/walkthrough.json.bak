@@ -1,0 +1,51 @@
+{
+    "walkthroughs": [
+        {
+            "id":"walk1",
+            "nextStepId": "walk2",
+            "focusElementId": "#mainscreenforfeit",
+            "contentAlign": "center",
+            "contentVertAlign": "below",
+            "showArrow": true,
+            "closeAnywhere": false,
+            "showFinishBtn": true,
+            "textDescr": "1. Lorem ipsum<b>dolor sit amet</b>,<br/><b>test hello test hello test hello test hello</b>dolor sit ametdolor sit ametdolor sit ametdolor sit amet consectetur adipiscing elit."
+        },
+        {
+            "id":"walk2",
+            "prevStepId":"walk1",
+            "nextStepId": "walk3",
+            "focusElementId": "#mainscreenhelp",
+            "contentAlign": "center",
+            "contentVertAlign": "below",
+            "showArrow": true,
+            "closeAnywhere": false,
+            "showFinishBtn": true,
+            "textDescr": "This is placeholder text often used<br/> in design templates to <br/>represent future content"
+        },
+        {
+            "id":"walk3",
+            "prevStepId":"walk2",
+            "nextStepId": "walk4",
+            "focusElementId": "#mainscreenselfie",
+            "contentAlign": "center",
+            "contentVertAlign": "below",
+            "showArrow": true,
+            "closeAnywhere": false,
+            "showFinishBtn": true,
+            "textDescr": "Bienvenue à la première étape du tutoriel. Suivez le guide pour en savoir plus."
+        },
+        {
+            "id":"walk4",
+            "prevStepId":"walk3",
+            "focusElementId": "#mainscreenchat",
+            "contentAlign": "center",
+            "contentVertAlign": "below",
+            "showArrow": true,
+            "closeAnywhere": false,
+            "showFinishBtn": true,
+            "textDescr": "Bienvenue à la première étape du tutoriel. Suivez le guide pour en savoir plus."
+        }
+
+    ]
+}

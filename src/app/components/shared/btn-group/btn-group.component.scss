@@ -1,0 +1,59 @@
+.vertbtn-container {
+    display: flex;
+    flex-direction: column;
+    // gap: 20px;
+    align-items: flex-end;
+}
+
+.cirbtn-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 75px;
+    
+    .arc-container {
+        z-index: 10;
+        display: flex;
+        gap: 0px;
+        flex-direction: column;
+    }
+
+    .arc-container {
+        > div:nth-child(1) {
+            transform: translateX(65px) translateY(0);
+
+        }
+
+        > div:nth-child(2) {
+            transform: translateX(25px) translateY(-10px);
+        }
+
+        > div:nth-child(3) {
+            transform: translateX(0px) translateY(-10px);
+        }
+
+        > div:nth-child(4) {
+            transform: translateX(25px) translateY(-10px);
+        }
+
+        > div:nth-child(5) {
+            transform: translateX(65px) translateY(-10px);
+        }
+    }
+
+    .base-container { 
+        position: absolute;
+        left: 77px;
+        padding-right: 0px;
+        margin-top: -20px;
+        --lib-icon-button-width: 70px;
+        --lib-icon-button-height: 70px;
+    }
+        
+
+    .main {
+        width: 120px;
+    }
+
+
+}

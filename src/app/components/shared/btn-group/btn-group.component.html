@@ -1,0 +1,20 @@
+<div class="top vertbtn-container" *ngIf="isTypeVertical">
+   <div *ngFor="let btn of buttons">
+      <app-button [btnSetting]="btn" [screenId]="screenId"></app-button>
+   </div>
+</div>
+
+<!-- to be made into a component -->
+<div class="bottom cirbtn-container" *ngIf="!isTypeVertical">
+   <div class="arc-container">
+         <div *ngFor="let btn of buttons">
+            <app-button  *ngIf="!btn.main" [btnSetting]="btn" [screenId]="screenId"></app-button>
+         </div>
+   </div>
+   <div class="base-container">
+      <div *ngFor="let btn of buttons">
+         <app-button  *ngIf="btn.main" [btnSetting]="btn" [screenId]="screenId"></app-button>
+      </div>
+   </div>
+</div>
+

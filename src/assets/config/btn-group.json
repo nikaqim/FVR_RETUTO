@@ -1,0 +1,97 @@
+{
+    "btngroup": [
+        {
+            "id": "top",
+            "layout": "vert",
+            "buttons": [
+                {
+                    "id": "forfeit",
+                    "icon": "/assets/imgs/forfeit_btn.png",
+                    "label": "Forfeit",
+                    "action": "exitTutorial",
+                    "visible": true
+                },
+                {
+                    "id": "help",
+                    "icon": "/assets/imgs/help_btn.png",
+                    "label": "Help",
+                    "action": "openHelp",
+                    "visible": true
+                },
+                {
+                    "id": "prep",
+                    "icon": "/assets/imgs/prep_btn.png",
+                    "label": "Prep",
+                    "action": "prepExec",
+                    "visible": true
+                },
+                {
+                    "id": "location",
+                    "icon": "/assets/imgs/location_btn.png",
+                    "label": "Location",
+                    "action": "showLocation",
+                    "visible": true
+                },
+                {
+                    "id": "chat",
+                    "icon": "/assets/imgs/chat_btn.png",
+                    "label": "Chat",
+                    "action": "openChat",
+                    "visible": true
+                }
+            ],
+            "visible": true
+        },
+        {
+            "id": "bottom",
+            "layout": "arc",
+            "buttons": [
+                {
+                    "id": "more",
+                    "icon": "/assets/imgs/more_btn.png",
+                    "label": "More",
+                    "action": "openMenu",
+                    "visible": true
+                },
+                {
+                    "id": "begin",
+                    "icon": "/assets/imgs/begin.png",
+                    "label": "Begin",
+                    "action": "start",
+                    "visible": true
+                },
+                {
+                    "id": "outfit",
+                    "icon": "/assets/imgs/outfit_btn.png",
+                    "label": "Outfit",
+                    "action": "seeOutfit",
+                    "visible": true
+                },
+                {
+                    "id": "video",
+                    "icon": "/assets/imgs/video_btn.png",
+                    "label": "Video",
+                    "action": "openVideo",
+                    "visible": true
+                },
+                {
+                    "id": "face",
+                    "icon": "/assets/imgs/face_btn.png",
+                    "label": "Face",
+                    "action": "openFace",
+                    "visible": true
+                },
+                {
+                    "id": "selfie",
+                    "icon": "/assets/imgs/selfie_video_btn.png",
+                    "label": "Selfie & Video",
+                    "action": "openSelfieVideo",
+                    "visible": true,
+                    "main": true
+                }
+
+            ],
+            "visible": true
+        }
+    ]
+}

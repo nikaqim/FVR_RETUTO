@@ -1,0 +1,74 @@
+<div #tutorWrapper class="tutorial-container">
+    <ng-container *ngFor="let step of steps">
+        <!-- If has both prev and next step -->
+        <ng-walkthrough
+            [id]="step.id"
+            [focusElementSelector]="step.focusElementId"
+            [contentTemplate]="step1Template"
+            (finished)="onFinishWalk(step.id)">
+
+        </ng-walkthrough>
+
+        <ng-template #step1Template>
+            <lib-icon-btn class="closebtn" (click)="closeWalk1()">
+                <img src="/assets/imgs/closebtn.png" />
+             </lib-icon-btn>
+            <p [innerHTML]="step.textDescr"></p>
+        </ng-template>
+
+    </ng-container>
+
+    <!-- <ng-walkthrough
+        #walk1
+        id="wt-test1"
+        containerClass="customWalk"
+        focusElementSelector="#help"
+        focusGlow="true"
+        focusBackdrop="true"
+        [contentTemplate]="step1"
+        [nextStep]="walk1b"
+        alignContent="center"
+        finishButton="true"
+        showArrow="true"
+        verticalAlignContent="below"
+        (closed)="walk1Closed($event)"
+        (finished)="walk1Finished()"
+        closeAnywhere="false"
+        [focusClick]="focusClickAction">
+        <ng-template #step1>
+            <button></button>
+            <lib-icon-btn class="closebtn" (click)="closeWalk1()">
+                <img src="/assets/imgs/closebtn.png" />
+             </lib-icon-btn>
+            <p class="wlk-paragraph">
+                1. Lorem ipsum dolor sit amet,<br/> consectetur adipiscing elit.<br/>Quisque varius blandit dolor<br/>, sit amet
+                <br/>condimentum eros vulputate<br/> sed. Aenean maximus dui<br/>
+                sem.
+            </p>
+        </ng-template>
+    </ng-walkthrough>
+
+    <ng-walkthrough
+        #walk1b
+        id="wt-test1b"
+        focusBackdrop="true"
+        [contentTemplate]="step1b"
+        [previousStep]="walk1"
+        finishButton="true"
+        closeButton="true"
+        closeAnywhere="false"
+        finishButton="true"
+    >
+        <ng-template #step1b>
+            <p>
+                1b. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque varius blandit dolor, sit amet
+                condimentum eros vulputate sed. Aenean maximus dui a lobortis pharetra. Suspendisse potenti. Nulla facilisi.
+                Suspendisse potenti. Integer porta nec arcu molestie sodales. Pellentesque et diam tellus. Quisque at nisi
+                id neque tempus varius. Donec vestibulum nisi ac risus laoreet lobortis. Cras tristique et sem mollis
+                vehicula. Nulla maximus urna a leo consectetur, at fringilla odio volutpat. Praesent ultricies nunc eget
+                tellus convallis, non hendrerit augue semper. Maecenas elit ex, lobortis at sapien sed, fermentum volutpat
+                sem.
+            </p>
+        </ng-template>
+    </ng-walkthrough> -->
+</div>
