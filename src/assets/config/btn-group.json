@@ -8,6 +8,7 @@
                     "id": "forfeit",
                     "icon": "/assets/imgs/forfeit_btn.png",
                     "label": "Forfeit",
+                    "size": "md",
                     "action": "exitTutorial",
                     "visible": true
                 },
@@ -15,6 +16,7 @@
                     "id": "help",
                     "icon": "/assets/imgs/help_btn.png",
                     "label": "Help",
+                    "size": "md",
                     "action": "openHelp",
                     "visible": true
                 },
@@ -22,6 +24,7 @@
                     "id": "prep",
                     "icon": "/assets/imgs/prep_btn.png",
                     "label": "Prep",
+                    "size": "md",
                     "action": "prepExec",
                     "visible": true
                 },
@@ -29,6 +32,7 @@
                     "id": "location",
                     "icon": "/assets/imgs/location_btn.png",
                     "label": "Location",
+                    "size": "md",
                     "action": "showLocation",
                     "visible": true
                 },
@@ -36,6 +40,7 @@
                     "id": "chat",
                     "icon": "/assets/imgs/chat_btn.png",
                     "label": "Chat",
+                    "size": "md",
                     "action": "openChat",
                     "visible": true
                 }
@@ -50,6 +55,7 @@
                     "id": "more",
                     "icon": "/assets/imgs/more_btn.png",
                     "label": "More",
+                    "size": "sm",
                     "action": "openMenu",
                     "visible": true
                 },
@@ -57,6 +63,7 @@
                     "id": "begin",
                     "icon": "/assets/imgs/begin.png",
                     "label": "Begin",
+                    "size": "md",
                     "action": "start",
                     "visible": true
                 },
@@ -64,6 +71,7 @@
                     "id": "outfit",
                     "icon": "/assets/imgs/outfit_btn.png",
                     "label": "Outfit",
+                    "size": "md",
                     "action": "seeOutfit",
                     "visible": true
                 },
@@ -71,6 +79,7 @@
                     "id": "video",
                     "icon": "/assets/imgs/video_btn.png",
                     "label": "Video",
+                    "size": "md",
                     "action": "openVideo",
                     "visible": true
                 },
@@ -78,6 +87,7 @@
                     "id": "face",
                     "icon": "/assets/imgs/face_btn.png",
                     "label": "Face",
+                    "size": "md",
                     "action": "openFace",
                     "visible": true
                 },
@@ -85,6 +95,7 @@
                     "id": "selfie",
                     "icon": "/assets/imgs/selfie_video_btn.png",
                     "label": "Selfie & Video",
+                    "size": "xl",
                     "action": "openSelfieVideo",
                     "visible": true,
                     "main": true

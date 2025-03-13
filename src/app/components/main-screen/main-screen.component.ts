@@ -32,21 +32,9 @@ import { TutoService } from '../../services/tuto.service';
 })
 export class MainScreenComponent implements OnInit, OnChanges {
   buttonGroup :ButtonGroup[] = [];
-  steps: CyranoTutorial[]= [];
   tutoData:CyranoTutorialConfig = {};
 
-  panels = [
-    "Intro",
-    "Timer",
-    "Alert",
-    "Selfie",
-    "Video",
-    "Outfit",
-    "Chat",
-    "Meetup Started",
-    "Prep",
-    "Tutorial",
-  ];
+  panels:string[] = [];
 
   availableLanguages = [
     { code: 'en', label: 'English' },
@@ -64,11 +52,8 @@ export class MainScreenComponent implements OnInit, OnChanges {
 
     this.walkService.onFinishLoadWalkThru().subscribe((data)=>{
       console.log('tuto data -> ',data)
-      this.tutoData = data;
-
-      this.steps = this.walkService.tabulateStep(this.tutoData);
-      console.log('steps:', this.steps);
-      
+      this.tutoData = data;      
+      this.panels = Object.keys(data);
     });
 
     this.walkService.loadWalkthrough();

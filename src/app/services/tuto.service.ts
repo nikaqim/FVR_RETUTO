@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { CyranoTutorial } from '../model/cyrano-walkthrough.model';
 import { CyranoTutorialConfig } from '../model/cyrano-walkthrough-cfg.model';
-import { WalkStepMap } from '../model/cyrano-walkthrough-screenmap.model';
+import { WalkStepMap, WalkDescrMap } from '../model/cyrano-walkthrough-screenmap.model';
 
 import { WalkthroughComponent } from 'angular-walkthrough';
 
@@ -22,7 +22,9 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   });
 
   steps:CyranoTutorial[] = [];
+  descrList: WalkDescrMap = {};
   step2screen: WalkStepMap = {};
+  
   walkconfig: CyranoTutorialConfig = {};
   tabulatedId:string[] = [];
 
@@ -46,9 +48,12 @@ import { WalkthroughComponent } from 'angular-walkthrough';
    * Loading Walkthrough Configuration Object
    */
   loadWalkthrough(){
-    this.getWalkhroughData().subscribe((data:CyranoTutorialConfig) => {
-      this.walkConfigSubject.next(data);
-    });
+    if(!this.steps.length){
+      this.getWalkhroughData().subscribe((data:CyranoTutorialConfig) => {
+        this.steps = this.tabulateStep(data);
+        this.walkConfigSubject.next(data);
+      });
+    }
   }
 
   onFinishLoadWalkThru(){
@@ -89,6 +94,10 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     this.walkthroughs.get(id)?.open();
   }
 
+  getSteps(){
+    return this.steps;
+  }
+
   tabulateStep(confData:CyranoTutorialConfig){
     // create duplicate of data
     this.walkconfig = JSON.parse(JSON.stringify(confData));
@@ -99,7 +108,13 @@ import { WalkthroughComponent } from 'angular-walkthrough';
         confData[screen].forEach(step => {
           if(!this.tabulatedId.includes(step.id)){
 
+            // store all step info
             this.steps.push(step);
+
+            // take descr of each step
+            this.descrList[step.id] = step.textDescr;
+
+            // to ensure no duplication
             this.tabulatedId.push(step.id);
 
             // screen screen id for each step
@@ -112,6 +127,10 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     });
 
     return this.steps; 
+  }
+
+  getAllDescr(){
+    return this.descrList;
   }
 
   getStepLen(){
@@ -141,8 +160,8 @@ import { WalkthroughComponent } from 'angular-walkthrough';
 
   scrollIntoView(elementId:string){
     const parentEl = document.getElementById(elementId);
-    console.log("Scroll to el ->", parentEl);
       if(parentEl){
+        console.log("Scroll to el ->", parentEl);
         parentEl.scrollIntoView({
           behavior: 'smooth',
           block: 'center',

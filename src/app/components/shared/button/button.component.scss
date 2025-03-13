@@ -1,5 +1,6 @@
 .custom-btn {
     display: flex;
+    width: 60px;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: self-end;
@@ -8,4 +9,31 @@
 .custom-btn > span {
     font-size: 12px;
     text-align: center;
+}
+
+.custom-btn.md {
+    --lib-icon-button-width: 25px;
+    --lib-icon-button-height: 25px;
+    // --lib-icon-button-container-height:85px;
+    // --lib-icon-button-container-width:85px;
+}
+
+.custom-btn.sm {
+    --lib-icon-button-width: 15px;
+    --lib-icon-button-height: 15px;
+    // --lib-icon-button-container-height:85px;
+    // --lib-icon-button-container-width:85px;
+}
+
+.lib-button-component button {
+    width: 100% ;
+}
+.lib-button-component button span.text,
+.lib-button-component button .btn-text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100% !important;
+    width: 100% !important;
 }

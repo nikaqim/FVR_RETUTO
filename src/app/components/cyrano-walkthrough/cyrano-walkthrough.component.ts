@@ -96,7 +96,8 @@ export class CyranoWalkthroughComponent implements
     @HostListener('window:resize', ['$event'])
     onResize(event: Event) {
         console.log("screen on resize...");
-        this.construct_walk();
+        // this.construct_walk();
+        this.close();
     }
 
     ngAfterViewInit(): void {
@@ -141,7 +142,8 @@ export class CyranoWalkthroughComponent implements
             current.verticalContentSpacing= 50;
             current.focusBackdrop = true;
             current.focusGlow = true;
-            // current.rootElement = ".main-page";
+            // current.rootElement = ".screen-container";
+            current.rootElement = '#' + this.tutoService.getScreenById(step.id);
             current.focusElementSelector = window.innerWidth < 551 ?
               step.focusElementId :
               ('#' + this.tutoService.getScreenById(step.id) + step.focusElementId.replace('#','')).toLowerCase();
@@ -195,6 +197,8 @@ export class CyranoWalkthroughComponent implements
       const targetWalkthrough = this.walkthroughComponents.find(wt => wt.id === stepId);
       if (targetWalkthrough) {
           targetWalkthrough.open();
+          this.activeId = this.steps[0].id;
+          this.tutoService.activateSwipeNav(stepId);
       } else {
           console.warn(`Walkthrough with id '${stepId}' not found`);
       } 

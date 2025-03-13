@@ -32,7 +32,7 @@ export class ButtonComponent implements OnInit, OnChanges, AfterViewInit {
     private btnService: BtnGroupService,
     private walkService: TutoService
   ){
-    this.btnSetting = new Button("","","","",false)
+    this.btnSetting = new Button("","","","", "",false)
   }
 
   ngOnInit(): void {
