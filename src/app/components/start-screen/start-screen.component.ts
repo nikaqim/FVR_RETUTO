@@ -23,7 +23,11 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private walkService:WalkthroughConfigService
-  ){}
+  ){
+    // this.walkService.listen2Sock().subscribe((msg: string) => {
+    //   console.log("receive socket update ->", msg);
+    // });
+  }
 
   ngOnInit(): void {
       
@@ -48,11 +52,6 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
     const text = inputElement.value;
 
     this.walkService.updateText(key, text);
-
-    // setTimeout(() => {
-    //     inputElement.focus(); // ✅ Restore focus
-    //     inputElement.setSelectionRange(cursorPosition, cursorPosition); // ✅ Restore cursor position
-    // }, 0);
 
     console.log("onInputChnge:this.steps",this.steps)
   }
