@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import { LocalStorageService } from './local-storage.service';
+import { StorageId } from '../enums/localstorageData.enum';
+
 import { CyranoTutorial } from '../model/cyrano-walkthrough.model';
 import { CyranoTutorialConfig } from '../model/cyrano-walkthrough-cfg.model';
 import { WalkStepMap, WalkDescrMap } from '../model/cyrano-walkthrough-screenmap.model';
@@ -10,7 +13,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
 
 @Injectable({
   providedIn: 'root'
-}) export class TutoService {
+}) export class WalkthroughConfigService {
 
   private walkthroughs = new Map<string, WalkthroughComponent>();
   private tutorNavigateSubject = new BehaviorSubject<string>("");
@@ -21,14 +24,21 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     walkthroughs: []
   });
 
+  private walkthroughTextSubject = new BehaviorSubject<CyranoTutorialConfig>({
+    walkthroughs: []
+  });
+
   steps:CyranoTutorial[] = [];
   descrList: WalkDescrMap = {};
   step2screen: WalkStepMap = {};
+  restartTabulatedIds: boolean = false;
   
   walkconfig: CyranoTutorialConfig = {};
   tabulatedId:string[] = [];
 
-  constructor(private httpClient:HttpClient) {
+  constructor(
+    private httpClient:HttpClient,
+    private localStorage:LocalStorageService) {
     this.loadWalkthrough();
   }
 
@@ -48,11 +58,20 @@ import { WalkthroughComponent } from 'angular-walkthrough';
    * Loading Walkthrough Configuration Object
    */
   loadWalkthrough(){
-    if(!this.steps.length){
+    console.log("loading walkthru")
+    let walkthruInStorage = this.localStorage.getData(StorageId.WalkConfig);
+    let isInStorage =  walkthruInStorage !== '';
+
+    if(!isInStorage){
       this.getWalkhroughData().subscribe((data:CyranoTutorialConfig) => {
         this.steps = this.tabulateStep(data);
+        this.descrList = this.tabulateDescr(this.steps);
         this.walkConfigSubject.next(data);
       });
+    } else {
+      this.steps = this.tabulateStep(JSON.parse(walkthruInStorage))
+      this.descrList = this.tabulateDescr(this.steps);
+      this.walkConfigSubject.next(JSON.parse(walkthruInStorage));
     }
   }
 
@@ -99,20 +118,33 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   }
 
   tabulateStep(confData:CyranoTutorialConfig){
+    console.log('tabulating steps')
+    if(this.restartTabulatedIds){
+      this.tabulatedId = [];
+      this.steps = [];
+      this.restartTabulatedIds = false;
+    }
     // create duplicate of data
     this.walkconfig = JSON.parse(JSON.stringify(confData));
 
+    // save to local storage for testing
+    this.localStorage.setData(
+      StorageId.WalkConfig, JSON.stringify(this.walkconfig)
+    );
+
     // tabulate different tutorial screen into 1
     Object.keys(confData).forEach(screen => {
+
       if(confData[screen].length){
         confData[screen].forEach(step => {
           if(!this.tabulatedId.includes(step.id)){
+            console.log("update value in here")
 
             // store all step info
             this.steps.push(step);
 
             // take descr of each step
-            this.descrList[step.id] = step.textDescr;
+            // this.descrList[step.id] = step.textDescr; 
 
             // to ensure no duplication
             this.tabulatedId.push(step.id);
@@ -126,16 +158,61 @@ import { WalkthroughComponent } from 'angular-walkthrough';
       }
     });
 
+    // this.walkConfigSubject.next(this.walkconfig);
     return this.steps; 
   }
 
+  tabulateDescr(steps:CyranoTutorial[]){
+    let alldescr:WalkDescrMap = {}; 
+    for(let step of steps){
+      if(!alldescr[step.id]){
+        alldescr[step.id] = step.textDescr; 
+      }
+    }
+
+    return alldescr;
+  }
+
   getAllDescr(){
+    console.log("description list");
     return this.descrList;
   }
 
-  getStepLen(){
-    return this.steps.length
+  updateText(id:string, text:string){
+    // get walkthrough id screen
+    let screen = this.getScreenById(id);
+
+    if(id && screen){
+      for(let [index, el] of this.walkconfig[screen].entries()){
+        if(el.id === id){
+          // update text
+          el.textDescr = text;
+          this.restartTabulatedIds = true;
+          console.log('updating text', JSON.stringify(this.walkconfig));
+          
+          this.steps = this.tabulateStep(this.walkconfig);
+          this.notifyTextChange(this.walkconfig);
+
+          break;
+        }
+      }; 
+    }
+
+    console.log("finish updatetxt")
   }
+
+  notifyTextChange(updatedData: CyranoTutorialConfig){
+    console.log("notifyTextChange: this.steps =>",this.steps.length, JSON.stringify(this.steps));
+    this.descrList = this.tabulateDescr(this.steps);
+    console.log("notifyTextChange: this.descrList =>",JSON.stringify(this.descrList));
+
+    this.walkthroughTextSubject.next(updatedData);
+  }
+
+  onNotifyTextChange(){
+    return this.walkthroughTextSubject.asObservable();
+  }
+
 
   getStepById(id:string){
     let dWalk = null;

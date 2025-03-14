@@ -6,6 +6,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RouterModule } from '@angular/router';
+
 import { WalkthroughModule } from 'angular-walkthrough';
 import { ButtonsModule } from 'nextsapien-component-lib';
 import { BtnGroupComponent } from './btn-group/btn-group.component';
@@ -46,6 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule,
     WalkthroughModule,
     RouterModule,
+    FormsModule,
     ButtonsModule,
     BtnGroupComponent,
     ButtonComponent,

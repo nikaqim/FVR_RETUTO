@@ -13,7 +13,7 @@ import { BtnGroupService } from '../../../services/btn.service';
 import { ButtonGroup } from './btn-group.model';
 import { BtnGroupConfig } from './btn-group-config.model';
 import { Button } from '../button/button.model';
-import { TutoService } from '../../../services/tuto.service';
+import { WalkthroughConfigService } from '../../../services/tuto.service';
 import { CyranoTutorialService } from 'cyranoTutorial';
 
 // import { CyranoTutorialService } from '../../../../../projects/cyrano-tutorial/src/public-api';
@@ -41,7 +41,7 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit {
 
  constructor(
     private btnService: BtnGroupService,
-    private walkService: CyranoTutorialService
+    private walkService: WalkthroughConfigService
   ){
 
   // on walkthru navigate next focus nextElement/btn 

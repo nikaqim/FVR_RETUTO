@@ -26,7 +26,12 @@
                     {{ step.key }}
                 </div>
                 <div class="right">
-                    <input type="text" [value]="step.value"/>
+                    <input 
+                        #inputDescr 
+                        type="text" 
+                        [name]="step.key" 
+                        [(ngModel)]="step.value" 
+                        (input)="onInputChange(step.key, $event)"/>
                 </div>
             </div>
         </div>

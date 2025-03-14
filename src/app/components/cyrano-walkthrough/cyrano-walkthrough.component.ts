@@ -22,7 +22,7 @@ import {
   WalkthroughNavigate,
 } from 'angular-walkthrough';
 
-import { TutoService } from '../../services/tuto.service';
+import { WalkthroughConfigService } from '../../services/tuto.service';
 
 @Component({
   selector: 'app-cyrano-walkthrough',
@@ -48,7 +48,7 @@ export class CyranoWalkthroughComponent implements
     activeId: string = "";
 
     constructor( 
-      private tutoService: TutoService
+      private tutoService: WalkthroughConfigService
     ){}
 
     ngOnInit(): void {
@@ -87,6 +87,7 @@ export class CyranoWalkthroughComponent implements
 
     ngOnChanges(changes: SimpleChanges): void {
       if(changes['data']){
+        console.log("in walk - data changes ->", this.data);
         this.steps = this.tutoService.tabulateStep(this.data);
         this.panels = this.tutoService.getScreens();
         console.log("this.panels ->",this.panels);

@@ -23,7 +23,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { CyranoTutorial } from '../../model/cyrano-walkthrough.model';
 import { CyranoTutorialConfig } from '../../model/cyrano-walkthrough-cfg.model';
-import { TutoService } from '../../services/tuto.service';
+import { WalkthroughConfigService } from '../../services/tuto.service';
 
 @Component({
   selector: 'app-main-screen',
@@ -44,7 +44,7 @@ export class MainScreenComponent implements OnInit, OnChanges {
 
   constructor(
     private btnGroupService: BtnGroupService,
-    private walkService: TutoService,
+    private walkService: WalkthroughConfigService,
   ){
     this.btnGroupService.getButtonConfig().subscribe((data:BtnGroupConfig) => {
       this.buttonGroup = data['btngroup'];

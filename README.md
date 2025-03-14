@@ -1,7 +1,22 @@
 # Reusetuto
 
 Node Version - v22.14.0
+Angular version - v17.3.12.
 
+Package                            Version
+------------------------------------------------------------
+@angular-devkit/architect          0.1703.12
+@angular-devkit/build-angular      17.3.12
+@angular-devkit/core               17.3.12
+@angular-devkit/schematics         17.3.12
+@angular/cdk                       17.3.10
+@angular/material                  17.3.10
+@angular/material-moment-adapter   17.3.10
+@schematics/angular                17.3.12
+ng-packagr                         17.3.0
+rxjs                               7.8.2
+typescript                         5.4.5
+zone.js                            0.14.10
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.12.
 

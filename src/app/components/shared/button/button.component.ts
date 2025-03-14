@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 import { Button } from './button.model';
-import { TutoService } from '../../../services/tuto.service';
+import { WalkthroughConfigService } from '../../../services/tuto.service';
 // import { CyranoTutorialService } from 'cyranoTutorial';
 import { BtnGroupService } from '../../../services/btn.service';
 import { Router } from '@angular/router';
@@ -30,7 +30,7 @@ export class ButtonComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(
     private router: Router,
     private btnService: BtnGroupService,
-    private walkService: TutoService
+    private walkService: WalkthroughConfigService
   ){
     this.btnSetting = new Button("","","","", "",false)
   }

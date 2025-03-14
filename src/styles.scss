@@ -73,8 +73,8 @@ walkthrough-container {
         max-width: 250px;
         // top: 80px !important;
         min-width: unset !important;
-        padding-top: 44px !important;
-        padding-bottom: 32px !important;
+        // padding-top: 44px !important;
+        // padding-bottom: 32px !important;
         // margin-left: 8em !important;
     }
 
@@ -87,23 +87,32 @@ walkthrough-container {
 }
 
 .wkt-content {
-    text-align: center;
+    text-align: left;
 }
 
 .wkt-navigate .wkt-finish-link,
-.wkt-navigate .wkt-next-link {
+.wkt-navigate .wkt-next-link,
+.wkt-navigate .wkt-previous-link {
     display: none;
+}
+
+.lib-button-container {
+    --lib-button-container-background: transparent;
 }
 
 .closebtn {
     position: absolute;
-    right: 10px;
-    top: 10px;
+    left: 8px;
+    top: -48px;
 }
 
 .wlk-paragraph {
     padding-top: 28px;
     padding-bottom: 20px;
+}
+
+.wkt-content-block.darken {
+    background-color: transparent !important;
 }
 
 @media only screen and (max-width:550px){
@@ -129,8 +138,8 @@ walkthrough-container {
         max-width: 250px;
         // top: 80px !important;
         // min-width: unset !important;
-        padding-top: 44px !important;
-        padding-bottom: 32px !important;
+        // padding-top: 44px !important;
+        // padding-bottom: 32px !important;
         // margin-left: 8em !important;
     }
     
