@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { WebSocketSubject, webSocket } from 'rxjs/webSocket';
 
-import { io, Socket } from 'socket.io-client';
+// import { WsService } from './ws.service';
 
 import { LocalStorageService } from './local-storage.service';
 import { StorageId } from '../enums/localstorageData.enum';
@@ -31,9 +30,6 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     walkthroughs: []
   });
 
-  private socket$!: WebSocketSubject<any>;
-  private readonly socketUrl = 'ws://localhost:8080/';
-
   steps:CyranoTutorial[] = [];
   descrList: WalkDescrMap = {};
   step2screen: WalkStepMap = {};
@@ -45,18 +41,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   constructor(
     private httpClient:HttpClient,
     private localStorage:LocalStorageService) {
-      this.connectWs();
       this.loadWalkthrough();
-  }
-
-  private connectWs(){
-    this.socket$ = webSocket(this.socketUrl);
-
-    this.socket$.subscribe({
-      next: (msg) => console.log('Received:', msg),
-      error: (err) => console.error('WebSocket error:', err),
-      complete: () => console.warn('WebSocket closed. Reconnecting...'),
-    })
   }
 
   register(id:string, walkthrough:WalkthroughComponent){

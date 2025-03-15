@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { JsonWsGateway } from './json-ws/json-ws.gateway';
+
+import { WebsocketsModule } from './websockets/websockets.module';
 
 @Module({
-  imports: [],
+  imports: [
+    WebsocketsModule
+  ],
   controllers: [AppController],
-  providers: [AppService, JsonWsGateway],
+  providers: [AppService],
 })
 export class AppModule {}
