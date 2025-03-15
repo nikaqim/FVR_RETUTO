@@ -40,6 +40,8 @@ export class MainScreenComponent implements OnInit, OnChanges {
 
   panels:string[] = [];
 
+  walkthroughActive:string = '';
+
   availableLanguages = [
     { code: 'en', label: 'English' },
     { code: 'fr', label: 'Français' },
@@ -83,6 +85,17 @@ export class MainScreenComponent implements OnInit, OnChanges {
 
   setBtnGroupReady(data: string){
     this.btnGroupService.notifyButtonGrpReady(data);
+  }
+
+  setActiveBtn(id: string){
+    console.log("this.setActiveBtn:",id);
+    if(id !== ''){
+      this.walkthroughActive = id;
+      this.btnGroupService.notifyButtonGrpReady(id);
+    } else {
+      this.walkthroughActive = '';
+    }
+    
   }
 
 

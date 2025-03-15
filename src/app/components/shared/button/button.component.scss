@@ -1,28 +1,30 @@
 .custom-btn {
     display: flex;
     width: 60px;
+    gap: 2px;
     flex-wrap: wrap;
     flex-direction: column;
+    text-align: center;
     align-items: self-end;
 }
 
 .custom-btn > span {
-    font-size: 12px;
+    font-size: 10px;
     text-align: center;
 }
 
 .custom-btn.md {
     --lib-icon-button-width: 25px;
     --lib-icon-button-height: 25px;
-    // --lib-icon-button-container-height:85px;
-    // --lib-icon-button-container-width:85px;
+    --lib-icon-button-container-height:85px;
+    --lib-icon-button-container-width:85px;
 }
 
 .custom-btn.sm {
     --lib-icon-button-width: 15px;
     --lib-icon-button-height: 15px;
-    // --lib-icon-button-container-height:85px;
-    // --lib-icon-button-container-width:85px;
+    --lib-icon-button-container-height:15px;
+    --lib-icon-button-container-width:15px;
 }
 
 .lib-button-component button {

@@ -33,6 +33,7 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit {
   @Input() type:string = 'vert';
   @Input() buttons:Button[] = [];
   @Input() screenId:string = '';
+  @Input() activeId:string = '';
 
   private subs = new Subscription();  
 

@@ -10,7 +10,9 @@ import {
   QueryList,
   OnChanges,
   SimpleChanges,
-  HostListener
+  HostListener,
+  Output,
+  EventEmitter
 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
@@ -45,6 +47,7 @@ export class CyranoWalkthroughComponent implements
     // receive walkthrough config for each steps
     @Input() data:CyranoTutorialConfig = {};
     @Input() addSwiperNav:boolean = false;
+    @Output() isOpen = new EventEmitter<string>();
 
     steps: CyranoTutorial[] = [];
     panels:string[] = [];
@@ -76,6 +79,7 @@ export class CyranoWalkthroughComponent implements
         .subscribe((comt: WalkthroughNavigate) => {
           const current = this.tutoService.getById(comt.next.id);
           this.activeId = comt.next.id;
+          this.isOpen.emit(current?.focusElementSelector.replace("#",''));
           if(current){
             this.tutoService.notifyTutoNavigation(current)
           }
@@ -88,6 +92,7 @@ export class CyranoWalkthroughComponent implements
 
           // `setting ${screen} as active..`
           this.activeScreenId = screen;
+          
         })
       );
   
@@ -164,8 +169,8 @@ export class CyranoWalkthroughComponent implements
             current.finishButton = step.showFinishBtn ? step.showFinishBtn : false;
             current.contentSpacing = 0;
             current.verticalContentSpacing= 50;
-            current.focusBackdrop = true;
-            current.focusGlow = true;
+            current.focusBackdrop = false;
+            current.focusGlow = false;
             // current.rootElement = ".screen-container";
             current.rootElement = '#' + this.tutoService.getScreenById(step.id);
             current.focusElementSelector = window.innerWidth < 551 ?
@@ -223,6 +228,7 @@ export class CyranoWalkthroughComponent implements
           targetWalkthrough.open();
           this.activeId = this.steps[0].id;
           this.tutoService.activateSwipeNav(stepId);
+          this.isOpen.emit(this.steps[0].focusElementId.replace('#',''));
       } else {
           console.warn(`Walkthrough with id '${stepId}' not found`);
       } 
@@ -241,6 +247,8 @@ export class CyranoWalkthroughComponent implements
 
         // remove active class
         this.activeScreenId = '';
+        this.activeId = '';
+        this.isOpen.emit('');
     }
   }
 

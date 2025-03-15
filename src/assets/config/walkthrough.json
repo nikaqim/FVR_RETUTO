@@ -9,7 +9,7 @@
             "showArrow": true,
             "closeAnywhere": false,
             "showFinishBtn": true,
-            "textDescr": "1. Lorem ipsum <b>dolor sit amet</b>,<br/>color sit ametdolor sit ametdolor sit ametdolor sit amet consectetur adipiscing elit."
+            "textDescr": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerc"
         }
     ],
     "Timer": [
@@ -23,7 +23,7 @@
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": "This is placeholder text often used<br/> in design templates to <br/>represent future content"
+        "textDescr": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"
     }], 
     "Alert": [
     {
@@ -36,19 +36,19 @@
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": "Bienvenue à la première étape du tutoriel. Suivez le guide pour en savoir plus."
+        "textDescr": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"
     }],
     "Selfie": [
     {
         "id":"walk4",
         "prevStepId":"walk3",
-        "focusElementId": "#chat",
+        "focusElementId": "#face",
         "contentAlign": "left",
-        "contentVertAlign": "below",
+        "contentVertAlign": "above",
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": "Bienvenue à la première étape du tutoriel. Suivez le guide pour en savoir plus."
+        "textDescr": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do"
     }],
     "Video": [],
     "Outfit": [],

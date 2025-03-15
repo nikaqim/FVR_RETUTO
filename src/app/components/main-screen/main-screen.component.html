@@ -6,12 +6,13 @@
 
         <div #allScreenView class="desktop screen-panel">
             <div class="screen-container" *ngFor="let panel of panels" [id]="panel">
-                <div class="btn-container">
+                <div class="btn-container {{walkthroughActive !== '' ? 'onwalk': ''}}">
                     <!-- to be made into a component -->
                      <div *ngFor="let btngrp of buttonGroup">
                         <app-btn-group 
                             [id]="panel + btngrp.id" 
                             [screenId]="panel"
+                            [activeId]="walkthroughActive"
                             [type]="btngrp.layout" 
                             [buttons]="btngrp.buttons"
                             (ButtonGroupReady)="setBtnGroupReady($event)">
@@ -39,7 +40,7 @@
         </div>
 
         <!-- <app-tuto-walkthrough></app-tuto-walkthrough> -->
-        <app-cyrano-walkthrough [data]="tutoData"></app-cyrano-walkthrough>
+        <app-cyrano-walkthrough [data]="tutoData" (isOpen)="setActiveBtn($event)"></app-cyrano-walkthrough>
         
     </div>
     
