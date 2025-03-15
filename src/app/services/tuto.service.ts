@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 // import { WsService } from './ws.service';
 
@@ -22,8 +22,8 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   private startTutoSubject = new BehaviorSubject<string>("");
   private swiperNavSubject = new BehaviorSubject<string>("");
 
-  private walkConfigSubject = new BehaviorSubject<CyranoTutorialConfig>({
-  });
+  private walkConfigSubject = new BehaviorSubject<CyranoTutorialConfig>({});
+  // private walkConfigSubject = new Subject<CyranoTutorialConfig>();
 
   private walkthroughTextSubject = new BehaviorSubject<CyranoTutorialConfig>({
   });
@@ -39,6 +39,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   constructor(
     private httpClient:HttpClient,
     private localStorage:LocalStorageService) {
+      console.log("in tuto construct")
       this.loadWalkthrough();
   }
 
@@ -60,6 +61,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   loadWalkthrough(){
     // console.log("loading walkthru")
     let walkthruInStorage = this.localStorage.getData(StorageId.WalkConfig);
+
     console.log(walkthruInStorage, typeof walkthruInStorage);
 
     let isInStorage = (typeof walkthruInStorage === 'string' && walkthruInStorage !== '') || 
@@ -68,18 +70,26 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     // console.log(walkthruInStorage, typeof walkthruInStorage, isInStorage);
 
     if(!isInStorage){
-      console.log("isinstorage");
+      console.log("not isinstorage");
+      
       this.getWalkhroughData().subscribe((data:CyranoTutorialConfig) => {
         this.steps = this.tabulateStep(data);
         this.descrList = this.tabulateDescr(this.steps);
+        this.walkconfig = data;
         this.walkConfigSubject.next(data);
       });
     } else {
-      console.log("not isinstorage");
+      console.log("isinstorage");
+
       this.steps = this.tabulateStep(JSON.parse(walkthruInStorage))
       this.descrList = this.tabulateDescr(this.steps);
+      this.walkconfig = JSON.parse(walkthruInStorage);
       this.walkConfigSubject.next(JSON.parse(walkthruInStorage));
     }
+  }
+
+  getConfig(){
+    return this.walkconfig;
   }
 
   implementMarkUp(descr:string){
@@ -93,23 +103,6 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   resetWalkthrough(){
     this.localStorage.setData(StorageId.WalkConfig, '');
   }
-
-  // // Listen for messages from the server
-  // listen2Sock(): Observable<any> {
-  //     return this.socket.asObservable();
-  // }
-
-  // // Send data to the server
-  // sendSockMessage(event: string, message: any) {
-  //   this.socket.next(message);
-  // }
-
-  // // Disconnect from the server
-  // disconnect() {
-  //     if (this.socket) {
-  //         this.socket.complete();
-  //     }
-  // }
 
   onFinishLoadWalkThru(){
     return this.walkConfigSubject.asObservable();
@@ -133,11 +126,8 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     return this.swiperNavSubject.asObservable();
   }
 
-  onJsonUpdate(){
-    
-  }
-
   startTuto(id:string){
+    console.log("this.startTuto");
     this.startTutoSubject.next(id);
   }
 

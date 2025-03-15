@@ -105,10 +105,9 @@ export class CyranoWalkthroughComponent implements
       this.subs.add(
         this.tutoService.onStartTuto().subscribe((id:string)=>{
           console.log("this.data=>",this.data);
-          // this.reset(this.data);
-          // this.destroy()
+          
           this.open(id);
-          // WalkthroughComponent.walkthroughContinue()
+          
         })
       );
     }
@@ -121,7 +120,7 @@ export class CyranoWalkthroughComponent implements
 
       this.steps = this.tutoService.tabulateStep(config); // get new steps
       this.construct_walk();
-      this.tutoService.loadWalkthrough();
+      // this.tutoService.loadWalkthrough();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -271,6 +270,8 @@ export class CyranoWalkthroughComponent implements
   ngOnDestroy(): void {
     this.close();
     this.destroy();
+
+    this.subs.unsubscribe(); // ✅ Unsubscribe from all subscriptions
   }
 
 }

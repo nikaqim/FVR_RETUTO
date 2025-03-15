@@ -6,7 +6,8 @@ import {
   Output,
   SimpleChanges,
   AfterViewInit,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
@@ -24,7 +25,7 @@ import { WalkthroughConfigService } from '../../../services/tuto.service';
   styleUrl: './btn-group.component.scss'
 })
 
-export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit {
+export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDestroy {
 
   @Input() id:string = '';
   @Input() type:string = 'vert';
@@ -80,6 +81,9 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit {
  ngAfterViewInit(){
   // BtnGroupService.notifyButtonGrpReady(0)
   this.ButtonGroupReady.emit(this.buttonIds.join())
+  }
 
- }
+  ngOnDestroy(): void {
+    this.subs.unsubscribe(); // ✅ Unsubscribe from all subscriptions
+  }
 }

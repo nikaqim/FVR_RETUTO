@@ -56,7 +56,7 @@ export class ButtonComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   openTutorial():void {
-    // console.log("open tutorial...");
+    console.log("open tutorial...");
     this.walkService.scrollIntoView(this.walkService.getScreenById('walk1'));
     this.walkService.startTuto('walk1');
   }

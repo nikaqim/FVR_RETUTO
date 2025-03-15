@@ -32,20 +32,15 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
       this.wsService.listen('btnJsonUpdate').subscribe((msg:string) => {
         // console.log("start-screen - websocket msg@btnJsonUpdate ->", msg);
       });
-      
-      this.walkService.onFinishLoadWalkThru().subscribe((data:CyranoTutorialConfig) => {
-        // console.log("nginit")
-        if(data){
-          const tmp = this.walkService.getAllDescr();
-          
-          for(let step of Object.keys(tmp)){
-            tmp[step] = this.reverseMarkup(tmp[step]);
-          }
 
-          this.steps = JSON.parse(JSON.stringify(tmp));
-          // console.log(this.steps);
-        }
-      });
+      const tmp = this.walkService.getAllDescr();
+          
+      for(let step of Object.keys(tmp)){
+        tmp[step] = this.reverseMarkup(tmp[step]);
+      }
+
+      this.steps = JSON.parse(JSON.stringify(tmp));
+
   }
 
   ngAfterViewInit(): void {
@@ -70,6 +65,7 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
       // console.log('Component destroyed');
+      
   }
 
 }

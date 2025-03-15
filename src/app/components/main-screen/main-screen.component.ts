@@ -32,7 +32,7 @@ import { WalkthroughConfigService } from '../../services/tuto.service';
   templateUrl: './main-screen.component.html',
   styleUrl: './main-screen.component.scss'
 })
-export class MainScreenComponent implements OnInit, OnChanges, OnDestroy {
+export class MainScreenComponent implements OnInit, OnDestroy {
   private subs = new Subscription();  
 
   buttonGroup :ButtonGroup[] = [];
@@ -53,7 +53,7 @@ export class MainScreenComponent implements OnInit, OnChanges, OnDestroy {
     private btnGroupService: BtnGroupService,
     private walkService: WalkthroughConfigService,
   ){
-    this.walkService.loadWalkthrough();
+    // this.walkService.loadWalkthrough();
     this.btnGroupService.getButtonConfig().subscribe((data:BtnGroupConfig) => {
       this.buttonGroup = data['btngroup'];
     });
@@ -70,17 +70,11 @@ export class MainScreenComponent implements OnInit, OnChanges, OnDestroy {
 
     this.subs.add(
       this.walkService.onFinishLoadWalkThru().subscribe((data)=>{
-        // console.log('tuto data -> ',data)
-        this.tutoData = data;      
-        this.panels = Object.keys(data);
+        console.log('tuto data -> ',data)
+        this.tutoData = this.walkService.getConfig();      
+        this.panels = Object.keys(this.tutoData);
       })
     );
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {   
-  }
-
-  ngAfterViewInit(){
   }
 
   setBtnGroupReady(data: string){
@@ -99,7 +93,7 @@ export class MainScreenComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      
+    this.subs.unsubscribe(); // ✅ Unsubscribe from all subscriptions
   }
 
 
