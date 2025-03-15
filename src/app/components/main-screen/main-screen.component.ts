@@ -17,6 +17,8 @@ import { BtnGroupService } from '../../services/btn.service';
 import { BtnGroupConfig } from '../shared/btn-group/btn-group-config.model';
 import { TranslateService } from '@ngx-translate/core';
 
+import { WsService } from '../../services/ws.service';
+
 // import { CyranoTutorialService } from 'cyranoTutorial';
 // import { CyranoTutorial } from 'cyranoTutorial';
 // import { CyranoTutorialConfig } from 'cyranoTutorial';
@@ -31,6 +33,8 @@ import { WalkthroughConfigService } from '../../services/tuto.service';
   styleUrl: './main-screen.component.scss'
 })
 export class MainScreenComponent implements OnInit, OnChanges {
+  private subs = new Subscription();  
+
   buttonGroup :ButtonGroup[] = [];
   tutoData:CyranoTutorialConfig = {};
 
@@ -43,23 +47,33 @@ export class MainScreenComponent implements OnInit, OnChanges {
   ];
 
   constructor(
+    private wsService: WsService,
     private btnGroupService: BtnGroupService,
     private walkService: WalkthroughConfigService,
   ){
+    this.walkService.loadWalkthrough();
     this.btnGroupService.getButtonConfig().subscribe((data:BtnGroupConfig) => {
       this.buttonGroup = data['btngroup'];
     });
-
-    this.walkService.onFinishLoadWalkThru().subscribe((data)=>{
-      console.log('tuto data -> ',data)
-      this.tutoData = data;      
-      this.panels = Object.keys(data);
-    });
-
-    this.walkService.loadWalkthrough();
   }
 
   ngOnInit(): void {
+
+    // this.subs.add(
+    //   this.wsService.listen('walkJsonUpdate').subscribe((msg:string) => {
+    //     console.log("main-screen - websocket msg@walkJsonUpdate ->", msg);
+    //     this.walkService.resetWalkthrough();
+    //     // this.walkService.loadWalkthrough();
+    //   })
+    // );
+
+    this.subs.add(
+      this.walkService.onFinishLoadWalkThru().subscribe((data)=>{
+        console.log('tuto data -> ',data)
+        this.tutoData = data;      
+        this.panels = Object.keys(data);
+      })
+    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {   

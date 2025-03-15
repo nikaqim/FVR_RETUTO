@@ -47,13 +47,15 @@ export class JsonWsGateway
       const walkthroughConfig = path.join(__dirname, '/../../../../src/assets/config/', 'walkthrough.json');;
 
       fs.watchFile(btnConfig, () => {
+          console.log('Updating btn-group config');
           const btnData = fs.readFileSync(btnConfig, 'utf8');
-          this.server.emit('btnJsonUpdate', JSON.stringify(btnData)); // ✅ Send update to all clients
+          this.server.emit('btnJsonUpdate', btnData); // ✅ Send update to all clients
       });
 
       fs.watchFile(walkthroughConfig, () => {
         const walkData = fs.readFileSync(walkthroughConfig, 'utf8');
-        this.server.emit('walkJsonUpdate', JSON.parse(walkData)); // ✅ Send update to all clients
+        console.log('Updating walkthrough config');
+        this.server.emit('walkJsonUpdate', walkData); // ✅ Send update to all clients
     });
   }
 }

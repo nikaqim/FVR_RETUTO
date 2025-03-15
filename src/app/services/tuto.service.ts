@@ -23,11 +23,9 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   private swiperNavSubject = new BehaviorSubject<string>("");
 
   private walkConfigSubject = new BehaviorSubject<CyranoTutorialConfig>({
-    walkthroughs: []
   });
 
   private walkthroughTextSubject = new BehaviorSubject<CyranoTutorialConfig>({
-    walkthroughs: []
   });
 
   steps:CyranoTutorial[] = [];
@@ -62,7 +60,9 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   loadWalkthrough(){
     console.log("loading walkthru")
     let walkthruInStorage = this.localStorage.getData(StorageId.WalkConfig);
-    let isInStorage =  walkthruInStorage !== '';
+    let isInStorage =  Object.keys(JSON.parse(walkthruInStorage)).length > 0;
+
+    console.log(walkthruInStorage, typeof walkthruInStorage, isInStorage);
 
     if(!isInStorage){
       this.getWalkhroughData().subscribe((data:CyranoTutorialConfig) => {
@@ -75,6 +75,10 @@ import { WalkthroughComponent } from 'angular-walkthrough';
       this.descrList = this.tabulateDescr(this.steps);
       this.walkConfigSubject.next(JSON.parse(walkthruInStorage));
     }
+  }
+
+  resetWalkthrough(){
+    this.localStorage.setData(StorageId.WalkConfig, '');
   }
 
   // // Listen for messages from the server
@@ -140,6 +144,11 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     return this.steps;
   }
 
+  resetTabulatedId(){
+    this.restartTabulatedIds = true;
+  }
+
+
   tabulateStep(confData:CyranoTutorialConfig){
     console.log('tabulating steps')
     if(this.restartTabulatedIds){
@@ -147,8 +156,13 @@ import { WalkthroughComponent } from 'angular-walkthrough';
       this.steps = [];
       this.restartTabulatedIds = false;
     }
+
+    console.log(typeof confData);
     // create duplicate of data
-    this.walkconfig = JSON.parse(JSON.stringify(confData));
+    this.walkconfig = typeof confData === 'string' ? JSON.parse(confData) : 
+    JSON.parse(JSON.stringify(confData));
+
+    console.log("this.walkconfig", this.walkconfig);
 
     // save to local storage for testing
     this.localStorage.setData(
@@ -156,10 +170,10 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     );
 
     // tabulate different tutorial screen into 1
-    Object.keys(confData).forEach(screen => {
+    Object.keys(this.walkconfig).forEach(screen => {
 
-      if(confData[screen].length){
-        confData[screen].forEach(step => {
+      if(this.walkconfig[screen].length){
+        this.walkconfig[screen].forEach(step => {
           if(!this.tabulatedId.includes(step.id)){
             console.log("update value in here")
 
@@ -182,6 +196,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     });
 
     // this.walkConfigSubject.next(this.walkconfig);
+    console.log("this.steps:",this.steps);
     return this.steps; 
   }
 

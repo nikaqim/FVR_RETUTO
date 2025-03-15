@@ -14,6 +14,10 @@ import {
 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
+
+import { WsService } from '../../services/ws.service';
+
+
 import { CyranoTutorial } from '../../model/cyrano-walkthrough.model';
 import { CyranoTutorialConfig } from '../../model/cyrano-walkthrough-cfg.model';
 
@@ -48,10 +52,19 @@ export class CyranoWalkthroughComponent implements
     activeId: string = "";
 
     constructor( 
+      private wsService:WsService,
       private tutoService: WalkthroughConfigService
     ){}
 
     ngOnInit(): void {
+      this.subs.add(
+        this.wsService.listen('walkJsonUpdate').subscribe((msg:CyranoTutorialConfig) => {
+          console.log("walkJsonUpdate");
+            this.reset(msg)
+
+        })
+      );
+
       this.subs.add(
         WalkthroughComponent.onOpen.subscribe((comp: WalkthroughComponent)=>{
           console.log(`${comp.id} is open`);
@@ -83,6 +96,16 @@ export class CyranoWalkthroughComponent implements
           this.open(id);
         })
       );
+    }
+
+    reset(config:CyranoTutorialConfig){
+      console.log("resetting walkthrough")
+      this.close(); // close walkthrough
+      this.tutoService.resetTabulatedId(); // clear walkthrough data
+      this.destroy(); // destroy walkthrough existing components
+
+      this.steps = this.tutoService.tabulateStep(config); // get new steps
+      this.construct_walk();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -221,8 +244,12 @@ export class CyranoWalkthroughComponent implements
     }
   }
 
-    ngOnDestroy(): void {
-      this.steps.forEach(step => this.tutoService.unregister(step.id));
-    }
+  destroy():void {
+    this.steps.forEach(step => this.tutoService.unregister(step.id));
+  }
+
+  ngOnDestroy(): void {
+    this.destroy();
+  }
 
 }

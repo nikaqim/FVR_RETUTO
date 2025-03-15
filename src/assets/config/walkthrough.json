@@ -9,7 +9,7 @@
             "showArrow": true,
             "closeAnywhere": false,
             "showFinishBtn": true,
-            "textDescr": "1. Lorem ipsum<b>dolor sit amet</b>,<br/>color sit ametdolor sit ametdolor sit ametdolor sit amet consectetur adipiscing elit."
+            "textDescr": "1. Lorem ipsum <b>dolor sit amet</b>,<br/>color sit ametdolor sit ametdolor sit ametdolor sit amet consectetur adipiscing elit."
         }
     ],
     "Timer": [
