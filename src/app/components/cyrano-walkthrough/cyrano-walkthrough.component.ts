@@ -105,7 +105,7 @@ export class CyranoWalkthroughComponent implements
       this.subs.add(
         this.tutoService.onStartTuto().subscribe((id:string)=>{
           console.log("this.data=>",this.data);
-          this.reset(this.data);
+          // this.reset(this.data);
           this.open(id);
         })
       );
