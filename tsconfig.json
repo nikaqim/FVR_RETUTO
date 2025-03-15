@@ -13,8 +13,7 @@
     "paths": {
       "ngTutorial": [
         "./dist/ng-tutorial"
-      ],
-      "zone.js/node": ["node_modules/zone.js/dist/zone-node.js"]
+      ]
     },
     "esModuleInterop": true,
     "sourceMap": true,
