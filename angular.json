@@ -53,7 +53,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/zone.js/fesm2015/zone.min.js"
+              
             ]
           },
           "configurations": {
