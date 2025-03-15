@@ -30,24 +30,24 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
 
       this.wsService.listen('btnJsonUpdate').subscribe((msg:string) => {
-        console.log("start-screen - websocket msg@btnJsonUpdate ->", msg);
+        // console.log("start-screen - websocket msg@btnJsonUpdate ->", msg);
       });
       
       this.walkService.onFinishLoadWalkThru().subscribe((data:CyranoTutorialConfig) => {
-        console.log("nginit")
+        // console.log("nginit")
         if(data){
           this.steps = this.walkService.getAllDescr();
-          console.log(this.steps);
+          // console.log(this.steps);
         }
       });
   }
 
   ngAfterViewInit(): void {
-      console.log('Afterview init');
+      // console.log('Afterview init');
   }
 
   onInputChange(key:string, event:Event){
-    console.log("this.onInputChange",event);
+    // console.log("this.onInputChange",event);
     const inputElement = event.target as HTMLInputElement;
  
     const cursorPosition = inputElement.selectionStart; // ✅ Get cursor position
@@ -55,11 +55,11 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.walkService.updateText(key, text);
 
-    console.log("onInputChnge:this.steps",this.steps)
+    // console.log("onInputChnge:this.steps",this.steps)
   }
 
   ngOnDestroy(): void {
-      console.log('Component destroyed');
+      // console.log('Component destroyed');
   }
 
 }

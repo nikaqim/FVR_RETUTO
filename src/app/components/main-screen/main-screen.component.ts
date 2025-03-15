@@ -70,7 +70,7 @@ export class MainScreenComponent implements OnInit, OnChanges {
 
     this.subs.add(
       this.walkService.onFinishLoadWalkThru().subscribe((data)=>{
-        console.log('tuto data -> ',data)
+        // console.log('tuto data -> ',data)
         this.tutoData = data;      
         this.panels = Object.keys(data);
       })
@@ -88,7 +88,7 @@ export class MainScreenComponent implements OnInit, OnChanges {
   }
 
   setActiveBtn(id: string){
-    console.log("this.setActiveBtn:",id);
+    // console.log("this.setActiveBtn:",id);
     if(id !== ''){
       this.walkthroughActive = id;
       this.btnGroupService.notifyButtonGrpReady(id);

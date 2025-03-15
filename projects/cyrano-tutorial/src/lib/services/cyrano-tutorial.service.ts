@@ -35,7 +35,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
 
 
   notifyTutoNavigation(nextId:WalkthroughComponent){
-    console.log("this.getScreenById(nextId):",this.getScreenById(nextId.id), nextId);
+    // console.log("this.getScreenById(nextId):",this.getScreenById(nextId.id), nextId);
     this.tutorNavigateSubject.next(nextId.focusElementSelector);
     this.swiperNavSubject.next(this.getScreenById(nextId.id));
   }

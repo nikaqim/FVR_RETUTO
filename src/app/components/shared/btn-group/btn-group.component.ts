@@ -65,7 +65,7 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit {
  ngOnInit():void {
   this.subs.add(
       this.wsService.listen('btnJsonUpdate').subscribe((msg:ButtonGroup) => {
-        console.log("btnGroup-screen - websocket msg@btnJsonUpdate ->", msg);
+        // console.log("btnGroup-screen - websocket msg@btnJsonUpdate ->", msg);
       })
   );
  }

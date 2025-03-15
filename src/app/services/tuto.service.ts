@@ -58,11 +58,11 @@ import { WalkthroughComponent } from 'angular-walkthrough';
    * Loading Walkthrough Configuration Object
    */
   loadWalkthrough(){
-    console.log("loading walkthru")
+    // console.log("loading walkthru")
     let walkthruInStorage = this.localStorage.getData(StorageId.WalkConfig);
     let isInStorage = walkthruInStorage !== '' && (typeof walkthruInStorage === 'object' && Object.keys(JSON.parse(walkthruInStorage)).length > 0);
 
-    console.log(walkthruInStorage, typeof walkthruInStorage, isInStorage);
+    // console.log(walkthruInStorage, typeof walkthruInStorage, isInStorage);
 
     if(!isInStorage){
       this.getWalkhroughData().subscribe((data:CyranoTutorialConfig) => {
@@ -150,19 +150,16 @@ import { WalkthroughComponent } from 'angular-walkthrough';
 
 
   tabulateStep(confData:CyranoTutorialConfig){
-    console.log('tabulating steps')
+    // console.log('tabulating steps')
     if(this.restartTabulatedIds){
       this.tabulatedId = [];
       this.steps = [];
       this.restartTabulatedIds = false;
     }
 
-    console.log(typeof confData);
     // create duplicate of data
     this.walkconfig = typeof confData === 'string' ? JSON.parse(confData) : 
     JSON.parse(JSON.stringify(confData));
-
-    console.log("this.walkconfig", this.walkconfig);
 
     // save to local storage for testing
     this.localStorage.setData(
@@ -175,13 +172,9 @@ import { WalkthroughComponent } from 'angular-walkthrough';
       if(this.walkconfig[screen].length){
         this.walkconfig[screen].forEach(step => {
           if(!this.tabulatedId.includes(step.id)){
-            console.log("update value in here")
 
             // store all step info
             this.steps.push(step);
-
-            // take descr of each step
-            // this.descrList[step.id] = step.textDescr; 
 
             // to ensure no duplication
             this.tabulatedId.push(step.id);
@@ -195,8 +188,6 @@ import { WalkthroughComponent } from 'angular-walkthrough';
       }
     });
 
-    // this.walkConfigSubject.next(this.walkconfig);
-    console.log("this.steps:",this.steps);
     return this.steps; 
   }
 
@@ -212,7 +203,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   }
 
   getAllDescr(){
-    console.log("description list");
+    // console.log("description list");
     return this.descrList;
   }
 
@@ -226,7 +217,6 @@ import { WalkthroughComponent } from 'angular-walkthrough';
           // update text
           el.textDescr = text;
           this.restartTabulatedIds = true;
-          console.log('updating text', JSON.stringify(this.walkconfig));
           
           this.steps = this.tabulateStep(this.walkconfig);
           this.notifyTextChange(this.walkconfig);
@@ -236,13 +226,10 @@ import { WalkthroughComponent } from 'angular-walkthrough';
       }; 
     }
 
-    console.log("finish updatetxt")
   }
 
   notifyTextChange(updatedData: CyranoTutorialConfig){
-    console.log("notifyTextChange: this.steps =>",this.steps.length, JSON.stringify(this.steps));
     this.descrList = this.tabulateDescr(this.steps);
-    console.log("notifyTextChange: this.descrList =>",JSON.stringify(this.descrList));
 
     this.walkthroughTextSubject.next(updatedData);
   }

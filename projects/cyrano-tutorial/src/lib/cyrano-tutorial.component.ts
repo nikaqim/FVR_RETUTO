@@ -54,14 +54,14 @@ export class CyranoTutorialComponent implements OnInit, OnChanges, AfterViewInit
 
     this.subs.add(
       WalkthroughComponent.onOpen.subscribe((comp: WalkthroughComponent)=>{
-        console.log(`${comp.id} is open`);
+        // console.log(`${comp.id} is open`);
       })
     );
 
     this.subs.add(
       WalkthroughComponent.onNavigate
       .subscribe((comt: WalkthroughNavigate) => {
-        console.log(`${comt.previous.id} is navigating`);
+        // console.log(`${comt.previous.id} is navigating`);
         const current = this.tutoService.getById(comt.next.id);
         this.activeId = comt.next.id;
         if(current){
@@ -73,7 +73,7 @@ export class CyranoTutorialComponent implements OnInit, OnChanges, AfterViewInit
     this.subs.add(
       this.tutoService.onSwiperChanged()
         .subscribe((screen:string) => {
-        console.log(`setting ${screen} as active..`);
+        // console.log(`setting ${screen} as active..`);
         this.activeScreenId = screen;
         // const targetEl = this.navElements.find(el => el.nativeElement.id === screen);
         // if(targetEl){
@@ -94,13 +94,13 @@ export class CyranoTutorialComponent implements OnInit, OnChanges, AfterViewInit
       if(changes['data']){
         this.steps = this.tutoService.tabulateStep(this.data);
         this.panels = this.tutoService.getScreens();
-        console.log("this.panels ->",this.panels);
+        // console.log("this.panels ->",this.panels);
       }
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
-      console.log("screen on resize...");
+      // console.log("screen on resize...");
       this.construct_walk();
   }
 
@@ -114,13 +114,13 @@ export class CyranoTutorialComponent implements OnInit, OnChanges, AfterViewInit
   construct_walk(): void {
 
     setTimeout(()=> {
-      console.log("this.walkthroughComponents:",this.walkthroughComponents);
+      // console.log("this.walkthroughComponents:",this.walkthroughComponents);
 
       if(this.walkthroughComponents){
 
         this.walkthroughComponents.forEach((walkthru, idx, arr) => {  
           const step = this.steps.find(s=>s.id === walkthru.id);
-          console.log("register walk");
+          // console.log("register walk");
 
           if(step?.id){
             this.tutoService.register(step.id, walkthru);
@@ -151,7 +151,7 @@ export class CyranoTutorialComponent implements OnInit, OnChanges, AfterViewInit
               step.focusElementId :
               ('#' + this.tutoService.getScreenById(step.id) + step.focusElementId.replace('#','')).toLowerCase();
             
-            console.log(window.innerWidth, "|| current.focusElementSelector:",current.focusElementSelector);
+            g(window.innerWidth, "|| current.focusElementSelector:",current.focusElementSelector);
             // current.focusHighlightAnimation = true
           }
           
@@ -170,7 +170,7 @@ export class CyranoTutorialComponent implements OnInit, OnChanges, AfterViewInit
           }
         });
 
-        console.log("this.steps:",this.steps);
+        // console.log("this.steps:",this.steps);
         if(this.steps.length > 0){
           this.open(this.steps[0].id);
           this.activeId = this.steps[0].id;
@@ -184,7 +184,7 @@ export class CyranoTutorialComponent implements OnInit, OnChanges, AfterViewInit
     const current = this.tutoService.getById(this.activeId);
 
     if(current && current.nextStep.id){
-      console.log("click on container", this.tutoService.getScreenById(current.nextStep.id));
+      // console.log("click on container", this.tutoService.getScreenById(current.nextStep.id));
       this.tutoService.scrollIntoView(this.tutoService.getScreenById(current.nextStep.id));
       WalkthroughComponent.walkthroughNext();  
     }
