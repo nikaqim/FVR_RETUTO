@@ -257,6 +257,7 @@ export class CyranoWalkthroughComponent implements
   }
 
   ngOnDestroy(): void {
+    this.close();
     this.destroy();
   }
 
