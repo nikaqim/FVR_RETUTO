@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
@@ -10,13 +11,10 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "paths": {
-      "cyranoTutorial": [
-        "./dist/cyrano-tutorial",
-        "./dist/cyrano-tutorial"
-      ],
       "ngTutorial": [
         "./dist/ng-tutorial"
-      ]
+      ],
+      "zone.js/node": ["node_modules/zone.js/dist/zone-node.js"]
     },
     "esModuleInterop": true,
     "sourceMap": true,

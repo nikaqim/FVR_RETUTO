@@ -17,9 +17,6 @@ import { ButtonGroup } from './btn-group.model';
 import { BtnGroupConfig } from './btn-group-config.model';
 import { Button } from '../button/button.model';
 import { WalkthroughConfigService } from '../../../services/tuto.service';
-import { CyranoTutorialService } from 'cyranoTutorial';
-
-// import { CyranoTutorialService } from '../../../../../projects/cyrano-tutorial/src/public-api';
 
 @Component({
   selector: 'app-btn-group',
