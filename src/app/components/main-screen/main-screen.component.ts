@@ -32,7 +32,7 @@ import { WalkthroughConfigService } from '../../services/tuto.service';
   templateUrl: './main-screen.component.html',
   styleUrl: './main-screen.component.scss'
 })
-export class MainScreenComponent implements OnInit, OnChanges {
+export class MainScreenComponent implements OnInit, OnChanges, OnDestroy {
   private subs = new Subscription();  
 
   buttonGroup :ButtonGroup[] = [];
@@ -96,6 +96,10 @@ export class MainScreenComponent implements OnInit, OnChanges {
       this.walkthroughActive = '';
     }
     
+  }
+
+  ngOnDestroy(): void {
+      
   }
 
 

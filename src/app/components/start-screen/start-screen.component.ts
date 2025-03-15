@@ -36,7 +36,13 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
       this.walkService.onFinishLoadWalkThru().subscribe((data:CyranoTutorialConfig) => {
         // console.log("nginit")
         if(data){
-          this.steps = this.walkService.getAllDescr();
+          const tmp = this.walkService.getAllDescr();
+          
+          for(let step of Object.keys(tmp)){
+            tmp[step] = this.reverseMarkup(tmp[step]);
+          }
+
+          this.steps = JSON.parse(JSON.stringify(tmp));
           // console.log(this.steps);
         }
       });
@@ -56,6 +62,10 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
     this.walkService.updateText(key, text);
 
     // console.log("onInputChnge:this.steps",this.steps)
+  }
+
+  reverseMarkup(descr:string){
+    return this.walkService.reverseMarkUp(descr);
   }
 
   ngOnDestroy(): void {

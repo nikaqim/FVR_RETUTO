@@ -60,21 +60,34 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   loadWalkthrough(){
     // console.log("loading walkthru")
     let walkthruInStorage = this.localStorage.getData(StorageId.WalkConfig);
-    let isInStorage = walkthruInStorage !== '' && (typeof walkthruInStorage === 'object' && Object.keys(JSON.parse(walkthruInStorage)).length > 0);
+    console.log(walkthruInStorage, typeof walkthruInStorage);
+
+    let isInStorage = (typeof walkthruInStorage === 'string' && walkthruInStorage !== '') || 
+      (typeof walkthruInStorage === 'object' && Object.keys(JSON.parse(walkthruInStorage)).length > 0);
 
     // console.log(walkthruInStorage, typeof walkthruInStorage, isInStorage);
 
     if(!isInStorage){
+      console.log("isinstorage");
       this.getWalkhroughData().subscribe((data:CyranoTutorialConfig) => {
         this.steps = this.tabulateStep(data);
         this.descrList = this.tabulateDescr(this.steps);
         this.walkConfigSubject.next(data);
       });
     } else {
+      console.log("not isinstorage");
       this.steps = this.tabulateStep(JSON.parse(walkthruInStorage))
       this.descrList = this.tabulateDescr(this.steps);
       this.walkConfigSubject.next(JSON.parse(walkthruInStorage));
     }
+  }
+
+  implementMarkUp(descr:string){
+    return descr.replace(/##\s*(.*?)\s*##/g, '<b>$1</b>');
+  }
+
+  reverseMarkUp(descr:string){
+    return descr.replace(/<b>\s*(.*?)\s*<\/b>/g, '## $1 ##');
   }
 
   resetWalkthrough(){
@@ -173,6 +186,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
         this.walkconfig[screen].forEach(step => {
           if(!this.tabulatedId.includes(step.id)){
 
+            step.textDescr = this.implementMarkUp(step.textDescr);
             // store all step info
             this.steps.push(step);
 

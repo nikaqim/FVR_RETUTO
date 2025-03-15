@@ -69,6 +69,12 @@ export class CyranoWalkthroughComponent implements
       );
 
       this.subs.add(
+        this.tutoService.onNotifyTextChange().subscribe((msg:CyranoTutorialConfig)=>{
+          
+        })
+      )
+
+      this.subs.add(
         WalkthroughComponent.onOpen.subscribe((comp: WalkthroughComponent)=>{
           // console.log(`${comp.id} is open`);
         })
@@ -97,13 +103,15 @@ export class CyranoWalkthroughComponent implements
       );
   
       this.subs.add(
-        this.tutoService.onStartTuto().subscribe((id)=>{
+        this.tutoService.onStartTuto().subscribe((id:string)=>{
+          console.log("this.data=>",this.data);
+          this.reset(this.data);
           this.open(id);
         })
       );
     }
 
-    reset(config:CyranoTutorialConfig){
+    reset(config:CyranoTutorialConfig=this.data){
       // console.log("resetting walkthrough")
       this.close(); // close walkthrough
       this.tutoService.resetTabulatedId(); // clear walkthrough data
@@ -111,6 +119,7 @@ export class CyranoWalkthroughComponent implements
 
       this.steps = this.tutoService.tabulateStep(config); // get new steps
       this.construct_walk();
+      this.tutoService.loadWalkthrough();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -227,6 +236,7 @@ export class CyranoWalkthroughComponent implements
       if (targetWalkthrough) {
           targetWalkthrough.open();
           this.activeId = this.steps[0].id;
+          console.log('this.steps[0].textDescr:',this.steps[0].textDescr);
           this.tutoService.activateSwipeNav(stepId);
           this.isOpen.emit(this.steps[0].focusElementId.replace('#',''));
       } else {
