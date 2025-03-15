@@ -59,13 +59,12 @@ export class MainScreenComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
 
-    // this.subs.add(
-    //   this.wsService.listen('walkJsonUpdate').subscribe((msg:string) => {
-    //     console.log("main-screen - websocket msg@walkJsonUpdate ->", msg);
-    //     this.walkService.resetWalkthrough();
-    //     // this.walkService.loadWalkthrough();
-    //   })
-    // );
+    this.subs.add(
+      this.wsService.listen('btnJsonUpdate').subscribe((msg:BtnGroupConfig) => {
+        
+        this.buttonGroup = typeof msg === 'string' ? JSON.parse(msg)['btngroup'] : msg['btngroup'];
+      })
+    );
 
     this.subs.add(
       this.walkService.onFinishLoadWalkThru().subscribe((data)=>{
