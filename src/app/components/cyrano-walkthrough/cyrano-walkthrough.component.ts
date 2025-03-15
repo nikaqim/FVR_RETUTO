@@ -106,7 +106,9 @@ export class CyranoWalkthroughComponent implements
         this.tutoService.onStartTuto().subscribe((id:string)=>{
           console.log("this.data=>",this.data);
           // this.reset(this.data);
+          // this.destroy()
           this.open(id);
+          // WalkthroughComponent.walkthroughContinue()
         })
       );
     }
@@ -263,6 +265,7 @@ export class CyranoWalkthroughComponent implements
   }
 
   destroy():void {
+    WalkthroughComponent.walkthroughStop();  
     this.steps.forEach(step => this.tutoService.unregister(step.id));
   }
 
