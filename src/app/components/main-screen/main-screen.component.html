@@ -24,12 +24,13 @@
 
         <div class="mobile screen-panel">
             <div class="screen-container" [id]="'mob'">
-                <div class="btn-container">
+                <div class="btn-container {{walkthroughActive !== '' ? 'onwalk': ''}}" >
                     <!-- to be made into a component -->
                      <div *ngFor="let btngrp of buttonGroup">
                         <app-btn-group 
                             [id]="'mob' + btngrp.id" 
                             [screenId]="'mob'"
+                            [activeId]="walkthroughActive"
                             [type]="btngrp.layout" 
                             [buttons]="btngrp.buttons"
                             (ButtonGroupReady)="setBtnGroupReady($event)">

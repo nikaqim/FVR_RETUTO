@@ -70,6 +70,7 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
 
  ngOnChanges(changes: SimpleChanges): void {
      if(changes['id']){
+      console.log('this.activeId',this.activeId, 'screenId', this.screenId);
       this.isTypeVertical = this.type === 'vert';
       
       this.buttons.forEach(btn => {

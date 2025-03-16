@@ -82,7 +82,7 @@ export class MainScreenComponent implements OnInit, OnDestroy {
   }
 
   setActiveBtn(id: string){
-    // console.log("this.setActiveBtn:",id);
+    console.log("this.setActiveBtn:",id);
     if(id !== ''){
       this.walkthroughActive = id;
       this.btnGroupService.notifyButtonGrpReady(id);
