@@ -12,7 +12,7 @@ import { WalkthroughConfigService } from '../../services/tuto.service';
 import { CyranoTutorialConfig } from '../../model/cyrano-walkthrough-cfg.model';
 import { WalkDescrMap } from '../../model/cyrano-walkthrough-screenmap.model';
 
-import { WsService } from '../../services/ws.service';
+// import { WsService } from '../../services/ws.service';
 @Component({
   selector: 'app-start-screen',
   templateUrl: './start-screen.component.html',
@@ -23,15 +23,15 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('inputDescr') inputElements!: QueryList<ElementRef>;
 
   constructor(
-    private wsService: WsService,
+    // private wsService: WsService,
     private walkService:WalkthroughConfigService
   ){}
 
   ngOnInit(): void {
 
-      this.wsService.listen('btnJsonUpdate').subscribe((msg:string) => {
-        // console.log("start-screen - websocket msg@btnJsonUpdate ->", msg);
-      });
+      // this.wsService.listen('btnJsonUpdate').subscribe((msg:string) => {
+      //   // console.log("start-screen - websocket msg@btnJsonUpdate ->", msg);
+      // });
 
       const tmp = this.walkService.getAllDescr();
           

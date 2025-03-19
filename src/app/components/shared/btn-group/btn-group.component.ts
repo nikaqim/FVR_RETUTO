@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
-import { WsService } from '../../../services/ws.service';
+// import { WsService } from '../../../services/ws.service';
 
 import { BtnGroupService } from '../../../services/btn.service';
 import { ButtonGroup } from './btn-group.model';
@@ -44,7 +44,7 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
  isTypeVertical = false;
 
  constructor(
-    private wsService: WsService,
+    // private wsService: WsService,
     private btnService: BtnGroupService,
     private walkService: WalkthroughConfigService
   ){
@@ -61,11 +61,11 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
  }
 
  ngOnInit():void {
-  this.subs.add(
-      this.wsService.listen('btnJsonUpdate').subscribe((msg:ButtonGroup) => {
-        // console.log("btnGroup-screen - websocket msg@btnJsonUpdate ->", msg);
-      })
-  );
+  // this.subs.add(
+  //     this.wsService.listen('btnJsonUpdate').subscribe((msg:ButtonGroup) => {
+  //       // console.log("btnGroup-screen - websocket msg@btnJsonUpdate ->", msg);
+  //     })
+  // );
  }
 
  ngOnChanges(changes: SimpleChanges): void {

@@ -17,7 +17,7 @@ import {
 
 import { Subscription } from 'rxjs';
 
-import { WsService } from '../../services/ws.service';
+// import { WsService } from '../../services/ws.service';
 
 import { CyranoTutorial } from '../../model/cyrano-walkthrough.model';
 import { CyranoTutorialConfig } from '../../model/cyrano-walkthrough-cfg.model';
@@ -57,21 +57,21 @@ export class CyranoWalkthroughComponent implements
     activeArrowId: string = "";
 
     constructor( 
-      private wsService:WsService,
+      // private wsService:WsService,
       private tutoService: WalkthroughConfigService,
       private arrowService: ArrowService
     ){}
 
     ngOnInit(): void {
 
-      // rxjs observable
-      this.subs.add(
-        this.wsService.listen('walkJsonUpdate').subscribe((msg:CyranoTutorialConfig) => {
-          // console.log("walkJsonUpdate");
-            this.reset(msg)
+      // // rxjs observable
+      // this.subs.add(
+      //   this.wsService.listen('walkJsonUpdate').subscribe((msg:CyranoTutorialConfig) => {
+      //     // console.log("walkJsonUpdate");
+      //       this.reset(msg)
 
-        })
-      );
+      //   })
+      // );
 
       this.subs.add(
         this.tutoService.onNotifyTextChange().subscribe((msg:CyranoTutorialConfig)=>{
