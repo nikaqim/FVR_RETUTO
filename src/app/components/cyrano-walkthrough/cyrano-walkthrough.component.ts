@@ -19,16 +19,17 @@ import { Subscription } from 'rxjs';
 
 import { WsService } from '../../services/ws.service';
 
-
 import { CyranoTutorial } from '../../model/cyrano-walkthrough.model';
 import { CyranoTutorialConfig } from '../../model/cyrano-walkthrough-cfg.model';
 
 import { 
   WalkthroughComponent,
+  WalkthroughEvent,
   WalkthroughNavigate,
 } from 'angular-walkthrough';
 
 import { WalkthroughConfigService } from '../../services/tuto.service';
+import { ArrowService } from 'src/app/services/arrow.service';
 
 @Component({
   selector: 'app-cyrano-walkthrough',
@@ -53,13 +54,17 @@ export class CyranoWalkthroughComponent implements
     panels:string[] = [];
     activeScreenId:string = ""; 
     activeId: string = "";
+    activeArrowId: string = "";
 
     constructor( 
       private wsService:WsService,
-      private tutoService: WalkthroughConfigService
+      private tutoService: WalkthroughConfigService,
+      private arrowService: ArrowService
     ){}
 
     ngOnInit(): void {
+
+      // rxjs observable
       this.subs.add(
         this.wsService.listen('walkJsonUpdate').subscribe((msg:CyranoTutorialConfig) => {
           // console.log("walkJsonUpdate");
@@ -76,7 +81,7 @@ export class CyranoWalkthroughComponent implements
 
       this.subs.add(
         WalkthroughComponent.onOpen.subscribe((comp: WalkthroughComponent)=>{
-          // console.log(`${comp.id} is open`);
+          console.log(`#${comp.id} is open & point to el${comp.focusElementSelector} -> alreadyshow ${WalkthroughComponent.walkthroughHasShow()}`);
         })
       );
   
@@ -86,9 +91,13 @@ export class CyranoWalkthroughComponent implements
           const current = this.tutoService.getById(comt.next.id);
           this.activeId = comt.next.id;
           this.isOpen.emit(current?.focusElementSelector.replace("#",''));
+          
           if(current){
+            this.drawArrow(current, current?.focusElementSelector);
             this.tutoService.notifyTutoNavigation(current)
           }
+
+          console.log("WalkthroughComponent.walkthroughHasShow():",WalkthroughComponent.walkthroughHasShow());
         })
       );
   
@@ -143,6 +152,29 @@ export class CyranoWalkthroughComponent implements
       this.construct_walk();
     }
 
+    drawArrow(event:WalkthroughComponent, arrowId: string){
+      console.log('drawArrow:',event);
+      const comp = event
+
+      if(comp){
+        const fromEl = 'descr-' + comp.id
+        const toEl = comp.focusElementSelector.replace('#','')
+
+        if(this.activeArrowId){
+          this.arrowService.removeArrow(this.activeArrowId);
+        }
+        
+        this.activeArrowId = arrowId;
+        console.log('this.activeArrowId:',this.activeArrowId);
+
+        setTimeout(()=>{
+          this.arrowService.drawArrow(fromEl, toEl, this.activeArrowId);
+        }, 100)
+      }
+      
+      
+    }
+
     /**
    * Assigning walkthrough attributes setting value
    */
@@ -174,7 +206,8 @@ export class CyranoWalkthroughComponent implements
             step.contentVertAlign === "center" ? 'center' : step.contentVertAlign === "top" ? 'top':
             step.contentVertAlign === "bottom" ? 'bottom' : 'below';
 
-            current.showArrow = step.showArrow ? step.showArrow : false;
+            // current.showArrow = step.showArrow ? step.showArrow : false;
+            current.showArrow = false;
             current.closeAnywhere = step.closeAnywhere ? step.closeAnywhere : false;
             current.finishButton = step.showFinishBtn ? step.showFinishBtn : false;
             current.contentSpacing = 0;
@@ -239,6 +272,12 @@ export class CyranoWalkthroughComponent implements
           this.activeId = this.steps[0].id;
           this.tutoService.activateSwipeNav(stepId);
           this.isOpen.emit(this.steps[0].focusElementId.replace('#',''));
+
+          if(WalkthroughComponent.walkthroughHasShow()){
+            this.drawArrow(targetWalkthrough, this.steps[0].focusElementId);
+          }
+
+
       } else {
           console.warn(`Walkthrough with id '${stepId}' not found`);
       } 
@@ -259,6 +298,9 @@ export class CyranoWalkthroughComponent implements
         this.activeScreenId = '';
         this.activeId = '';
         this.isOpen.emit('');
+
+        this.arrowService.removeAll();
+        this.activeArrowId = '';
     }
   }
 

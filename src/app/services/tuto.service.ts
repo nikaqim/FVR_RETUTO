@@ -62,7 +62,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     // console.log("loading walkthru")
     let walkthruInStorage = this.localStorage.getData(StorageId.WalkConfig);
 
-    console.log(walkthruInStorage, typeof walkthruInStorage);
+    // console.log(walkthruInStorage, typeof walkthruInStorage);
 
     let isInStorage = (typeof walkthruInStorage === 'string' && walkthruInStorage !== '') || 
       (typeof walkthruInStorage === 'object' && Object.keys(JSON.parse(walkthruInStorage)).length > 0);

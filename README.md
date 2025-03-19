@@ -3,6 +3,7 @@
 Node Version - v22.14.0
 Angular version - v17.3.12.
 
+
 Package                            Version
 ------------------------------------------------------------
 @angular-devkit/architect          0.1703.12
