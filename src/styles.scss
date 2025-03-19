@@ -16,6 +16,12 @@ body {
     filter: brightness(0.3);
 }
 
+.btn-container.onwalk .app-btn.active {
+    // box-shadow: 7px -7px 8px -3px #fff;
+    box-shadow: 0px 0px 48px -10px #fff;
+    border-radius: 70%;
+}
+
 b {
     color: #FE3C72;
     font-weight: bold;

@@ -1,30 +1,59 @@
 .custom-btn {
+    // display: flex;
+    // width: 60px;
+    // gap: 2px;
+    // flex-wrap: wrap;
+    // flex-direction: column;
+    // text-align: center;
+    // align-items: self-end;
+
     display: flex;
-    width: 60px;
-    gap: 2px;
-    flex-wrap: wrap;
+    width: 38px;
+    gap: 4px;
+    flex-wrap: nowrap;
     flex-direction: column;
+    overflow: visible;
     text-align: center;
-    align-items: self-end;
+    align-items: center;
+    height: 38px;
+    border-radius: 19px;
 }
 
 .custom-btn > span {
-    font-size: 10px;
-    text-align: center;
+    display: block;
+    font-size: 9px;
+    line-height: 12px;
+    width: 100%;
+    text-align: center
+}
+
+.custom-btn.xl > span {
+    width: 80% !important;
 }
 
 .custom-btn.md {
-    --lib-icon-button-width: 25px;
-    --lib-icon-button-height: 25px;
+    --lib-icon-button-width: 40px;
+    --lib-icon-button-height: 40px;
     --lib-icon-button-container-height:85px;
     --lib-icon-button-container-width:85px;
 }
 
 .custom-btn.sm {
-    --lib-icon-button-width: 15px;
-    --lib-icon-button-height: 15px;
-    --lib-icon-button-container-height:15px;
-    --lib-icon-button-container-width:15px;
+    width: 22px;
+    height: 21px;
+    --lib-icon-button-width: 22px;
+    --lib-icon-button-height: 21px;
+    --lib-icon-button-container-height: 22px;
+    --lib-icon-button-container-width: 21px;
+}
+
+.custom-btn.xl {
+    width: 70px;
+    height: 70px;
+    --lib-icon-button-width: 70px;
+    --lib-icon-button-height: 70px;
+    --lib-icon-button-container-height:70px;
+    --lib-icon-button-container-width:70px;
 }
 
 .lib-button-component button {
