@@ -54,7 +54,7 @@
                 {
                     "id": "more",
                     "icon": "/assets/imgs/more_btn.png",
-                    "label": "Test",
+                    "label": "More",
                     "size": "sm",
                     "action": "openMenu",
                     "visible": true
