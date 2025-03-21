@@ -2,6 +2,6 @@
     <lib-icon-btn [id]="screenId !== 'mob' ? (screenId + btnSetting.id).toLowerCase() : btnSetting.id">
         <img [src]="btnSetting.icon" />
      </lib-icon-btn>
-     <span>{{ 'app.button.' + btnSetting.label | translate }}</span>
+     <span>{{ getTranslatedLabel(btnSetting.label) }}</span>
 </div>
 

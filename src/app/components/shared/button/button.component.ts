@@ -7,6 +7,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 
+import { TranslateService } from '@ngx-translate/core';
 import { Button } from './button.model';
 import { WalkthroughConfigService } from '../../../services/tuto.service';
 // import { CyranoTutorialService } from 'cyranoTutorial';
@@ -30,7 +31,8 @@ export class ButtonComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(
     private router: Router,
     private btnService: BtnGroupService,
-    private walkService: WalkthroughConfigService
+    private walkService: WalkthroughConfigService,
+    private translate: TranslateService
   ){
     this.btnSetting = new Button("","","","", "",false)
   }
@@ -53,6 +55,12 @@ export class ButtonComponent implements OnInit, OnChanges, AfterViewInit {
     if (action) {
       action();
     }
+  }
+
+  getTranslatedLabel(label: string): string {
+    const key = `app.button.${label}`;
+    const translation = this.translate.instant(key);
+    return translation === key ? label : translation; // ✅ Fallback to `label`
   }
 
   openTutorial():void {
