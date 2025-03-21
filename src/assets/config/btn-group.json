@@ -67,6 +67,7 @@
                     "action": "start",
                     "visible": true
                 },
+
                 {
                     "id": "outfit",
                     "icon": "/assets/imgs/outfit_btn.png",

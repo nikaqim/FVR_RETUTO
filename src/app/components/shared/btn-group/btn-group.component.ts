@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
-// import { WsService } from '../../../services/ws.service';
+import { WsService } from '../../../services/ws.service';
 
 import { BtnGroupService } from '../../../services/btn.service';
 import { ButtonGroup } from './btn-group.model';
@@ -44,7 +44,7 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
  isTypeVertical = false;
 
  constructor(
-    // private wsService: WsService,
+    private wsService: WsService,
     private btnService: BtnGroupService,
     private walkService: WalkthroughConfigService
   ){
@@ -61,11 +61,11 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
  }
 
  ngOnInit():void {
-  // this.subs.add(
-  //     this.wsService.listen('btnJsonUpdate').subscribe((msg:ButtonGroup) => {
-  //       // console.log("btnGroup-screen - websocket msg@btnJsonUpdate ->", msg);
-  //     })
-  // );
+  this.subs.add(
+      this.wsService.listen('btnJsonUpdate').subscribe((msg:ButtonGroup) => {
+        // console.log("btnGroup-screen - websocket msg@btnJsonUpdate ->", msg);
+      })
+  );
  }
 
  ngOnChanges(changes: SimpleChanges): void {
@@ -84,7 +84,27 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
   this.ButtonGroupReady.emit(this.buttonIds.join())
   }
 
+  getButtonPosition(index: number, total: number) {
+    const radius = 50 + (total * 7); // Dynamically increase arc size
+    const startAngle = Math.PI / 2; // Start at 180 degrees (semi-circle)
+    const endAngle = (3 * Math.PI)/2; // End at 360 degrees
+
+    // 🔄 Reverse the order by inverting the index
+    const reversedIndex = total - 1 - index;
+
+    const angle = startAngle + ((endAngle - startAngle) / (total - 1)) * reversedIndex; // Distribute buttons evenly
+
+    const x = radius * Math.cos(angle);
+    const y = radius * Math.sin(angle);
+
+    return {
+      transform: `translate(${x}px, ${y}px)`
+    };
+  }
+
   ngOnDestroy(): void {
     this.subs.unsubscribe(); // ✅ Unsubscribe from all subscriptions
   }
+
+  
 }
