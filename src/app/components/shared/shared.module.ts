@@ -7,6 +7,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RouterModule } from '@angular/router';
 
+import { MatIconModule } from '@angular/material/icon';
+
 import { WalkthroughModule } from 'angular-walkthrough';
 import { ButtonsModule } from 'nextsapien-component-lib';
 import { BtnGroupComponent } from './btn-group/btn-group.component';
@@ -31,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     WalkthroughModule,
     HttpClientModule,
+    MatIconModule,
     ButtonsModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
@@ -48,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     WalkthroughModule,
     RouterModule,
     FormsModule,
+    MatIconModule,
     ButtonsModule,
     BtnGroupComponent,
     ButtonComponent,

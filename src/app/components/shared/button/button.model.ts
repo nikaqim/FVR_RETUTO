@@ -1,10 +1,11 @@
 export class Button {
     id: string = "";
-    icon: string = "";
-    label: string= "";
-    size: string= "";
+    icon: string = ""; // material icon
+    label: string= ""; // i18n will be enabled if title is same with app.button
+    size: string= ""; // xs, sm, md, lg, xl
     action: string = "";
     main:boolean = false;
+    title: string= "";
     visible: boolean = false;
 
     constructor(id: string = "", icon: string = "", label: string = "", size:string = "", action: string = "", visible:boolean = false) {

@@ -169,7 +169,7 @@ export class CyranoWalkthroughComponent implements
 
         setTimeout(()=>{
           this.arrowService.drawArrow(fromEl, toEl, this.activeArrowId);
-        }, 100)
+        }, 150)
       }
       
       

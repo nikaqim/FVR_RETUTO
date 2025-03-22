@@ -7,6 +7,24 @@ body {
     background: #161419;
 }
 
+.lib-button-component button, 
+.lib-button-component button .btn-text {
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    padding: 0px;
+}
+
+lib-bubble-btn button .mat-icon {
+    font-size: 20px;
+    // margin-right: 4px;
+    margin-top: 0.1em;
+
+}
+
+
 :root {
     --lib-icon-button-width: 2vw;
     --lib-icon-button-height: 4vh;

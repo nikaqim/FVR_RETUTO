@@ -1,3 +1,5 @@
+
+
 .vertbtn-container {
     display: flex;
     flex-direction: column;
@@ -70,8 +72,10 @@
         margin-top: -32px;
         width: 70px;
         height: 70px;
+        border-radius: 50%;
         --lib-icon-button-width: 70px;
         --lib-icon-button-height: 70px;
+        --lib-bubble-btn-diameter: 70px;
     }
 
 
