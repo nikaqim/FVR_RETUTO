@@ -17,7 +17,7 @@ import { BtnGroupService } from '../../services/btn.service';
 import { BtnGroupConfig } from '../shared/btn-group/btn-group-config.model';
 import { TranslateService } from '@ngx-translate/core';
 
-import { WsService } from '../../services/ws.service';
+// import { WsService } from '../../services/ws.service';
 
 // import { CyranoTutorialService } from 'cyranoTutorial';
 // import { CyranoTutorial } from 'cyranoTutorial';
@@ -49,7 +49,7 @@ export class MainScreenComponent implements OnInit, OnDestroy {
   ];
 
   constructor(
-    private wsService: WsService,
+    // private wsService: WsService,
     private btnGroupService: BtnGroupService,
     private walkService: WalkthroughConfigService,
   ){
@@ -61,12 +61,13 @@ export class MainScreenComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.subs.add(
-      this.wsService.listen('btnJsonUpdate').subscribe((msg:BtnGroupConfig) => {
+    // // for testing realtime update using websocket
+    // this.subs.add(
+    //   this.wsService.listen('btnJsonUpdate').subscribe((msg:BtnGroupConfig) => {
         
-        this.buttonGroup = typeof msg === 'string' ? JSON.parse(msg)['btngroup'] : msg['btngroup'];
-      })
-    );
+    //     this.buttonGroup = typeof msg === 'string' ? JSON.parse(msg)['btngroup'] : msg['btngroup'];
+    //   })
+    // );
 
     this.subs.add(
       this.walkService.onFinishLoadWalkThru().subscribe((data)=>{

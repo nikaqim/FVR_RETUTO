@@ -11,13 +11,14 @@ import {
 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
-import { WsService } from '../../../services/ws.service';
+// import { WsService } from '../../../services/ws.service';
 
 import { BtnGroupService } from '../../../services/btn.service';
-import { ButtonGroup } from './btn-group.model';
+import { mainAssigned, ButtonGroup } from './btn-group.model';
 import { BtnGroupConfig } from './btn-group-config.model';
 import { Button } from '../button/button.model';
 import { WalkthroughConfigService } from '../../../services/tuto.service';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-btn-group',
@@ -34,6 +35,11 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
   @Input() activeId:string = '';
 
   private subs = new Subscription();  
+  // mainAssigned:mainAssigned = {};
+  mainAssigned:string = '';
+  vertButtons: Button[] = [];
+  arcButtons: Button[] = [];
+  baseButtons: Button[] = [];
 
   buttonIds:string[] = [];
   // parentScreenContainer;
@@ -44,28 +50,39 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
  isTypeVertical = false;
 
  constructor(
-    private wsService: WsService,
+    // private wsService: WsService,
     private btnService: BtnGroupService,
     private walkService: WalkthroughConfigService
   ){
 
-  // on walkthru navigate next focus nextElement/btn 
-  this.walkService.onTutoNavigation().subscribe((btnId)=>{
-    if(btnId){
-      // console.log("BtnClick:",btnId, this.btnService.getScreenContainerId(btnId));
-      const parentId = this.btnService.getScreenContainerId(btnId)
-      this.walkService.scrollIntoView(parentId)
-      
-    }
-  });
+    // on walkthru navigate next focus nextElement/btn 
+    this.walkService.onTutoNavigation().subscribe((btnId:string)=>{
+      if(btnId){
+        // console.log("BtnClick:",btnId, this.btnService.getScreenContainerId(btnId));
+        const parentId = this.btnService.getScreenContainerId(btnId)
+        this.walkService.scrollIntoView(parentId)
+        
+      }
+    });
  }
 
  ngOnInit():void {
-  this.subs.add(
-      this.wsService.listen('btnJsonUpdate').subscribe((msg:ButtonGroup) => {
-        // console.log("btnGroup-screen - websocket msg@btnJsonUpdate ->", msg);
-      })
-  );
+  // to seperate button in arc or main
+  if(this.type === 'arc'){
+    this.arcButtons = this.buttons.filter((btn) => {
+      return !btn.main
+    });
+
+    this.baseButtons = this.buttons.filter((btn) => {
+      return  btn.main
+    });
+  }
+
+  // // ws service for config update
+  // this.subs.add(
+  //     this.wsService.listen('btnJsonUpdate').subscribe((msg:ButtonGroup) => {
+  //     })
+  // );
  }
 
  ngOnChanges(changes: SimpleChanges): void {
@@ -100,6 +117,16 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
     return {
       transform: `translate(${x}px, ${y}px)`
     };
+  }
+
+  assignMain(btn:Button){
+    if(btn.main && this.mainAssigned === ''){
+      this.mainAssigned = btn.id;
+      console.log(this.mainAssigned)
+    } 
+    
+    return this.mainAssigned;
+
   }
 
   ngOnDestroy(): void {

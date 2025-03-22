@@ -34,6 +34,10 @@
         justify-content: center;
         position: relative;
 
+        .app-btn.hide {
+            display:  none !important;
+        }
+        
         .app-btn {
             position: absolute;
             display: flex;

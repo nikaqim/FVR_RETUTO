@@ -70,7 +70,7 @@
 
                 {
                     "id": "outfit",
-                    "icon": "apparel",
+                    "icon": "styler",
                     "label": "Outfit",
                     "size": "md",
                     "action": "seeOutfit",
