@@ -6,7 +6,8 @@
         [id]="screenId !== 'mob' ? (screenId + btnSetting.id).toLowerCase() : btnSetting.id" 
         variant='primary'
         [title]="btnSetting.title ? btnSetting.title : ''">
-            <mat-icon>{{btnSetting.icon}}</mat-icon>
+            <img [src]="btnSetting.icon" alt="icon" />
+            <!-- <mat-icon>{{btnSetting.icon}}</mat-icon> -->
      </lib-bubble-btn>
      <span>{{ getTranslatedLabel(btnSetting.label) }}</span>
 </div>
