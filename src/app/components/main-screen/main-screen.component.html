@@ -10,7 +10,7 @@
                     <img src="/assets/imgs/closebtn.png" />
                  </lib-icon-btn>
 
-                <div class="btn-container {{walkthroughActive !== '' ? 'onwalk': ''}}">
+                <div class="btn-container {{walkthroughActive !== '' ? 'onwalk': ''}} {{ highlightAll(isActiveScreen(panel)) ? 'highlightall' : ''}}">
                     <!-- to be made into a component -->
                      <div *ngFor="let btngrp of buttonGroup">
                         <app-btn-group 

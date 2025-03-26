@@ -96,6 +96,11 @@ export class MainScreenComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  highlightAll(screenIsActive:boolean){
+    
+    return screenIsActive && !this.walkService.getById(this.walkService.getActiveId())?.focusBackdrop;
+  }
+
   /**
    * Close walkthrough
    */

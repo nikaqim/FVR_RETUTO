@@ -8,6 +8,7 @@ export class CyranoTutorial {
     contentAlign: string;
     contentVertAlign: string;
     showArrow: boolean = true;
+    focusBackdrop: boolean = false;
     closeAnywhere: boolean = false;
     showFinishBtn: boolean = false;
     descr: WalkDescr[];

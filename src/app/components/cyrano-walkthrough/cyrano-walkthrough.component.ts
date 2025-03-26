@@ -87,6 +87,7 @@ export class CyranoWalkthroughComponent implements
 
       this.subs.add(
         WalkthroughComponent.onOpen.subscribe((comp: WalkthroughComponent)=>{
+
           console.log(`#${comp.id} is open & point to el${comp.focusElementSelector} -> alreadyshow ${WalkthroughComponent.walkthroughHasShow()}`);
         })
       );
@@ -175,6 +176,14 @@ export class CyranoWalkthroughComponent implements
 
           const el = document.querySelector(".wkt-content-block") as HTMLElement;
           const screen = document.querySelector(".screen-container.onwalk");
+          const backdrop = document.querySelector('.wkt-zone') as HTMLElement;
+
+          console.log("bgdrop",backdrop);
+
+          if(backdrop){
+            
+            backdrop.style.setProperty('box-shadow', 'none', 'important');
+          }
 
           if(screen && el){
             // readjust position so don't get out of screen
@@ -241,8 +250,8 @@ export class CyranoWalkthroughComponent implements
             current.closeAnywhere = step.closeAnywhere ? step.closeAnywhere : false;
             current.finishButton = step.showFinishBtn ? step.showFinishBtn : false;
             current.contentSpacing = 0;
+            current.focusBackdrop = step.focusBackdrop;
             current.verticalContentSpacing= 50;
-            current.focusBackdrop = false;
             current.focusGlow = false;
             // current.rootElement = ".screen-container";
             current.rootElement = '#' + this.tutoService.getScreenById(step.id);
