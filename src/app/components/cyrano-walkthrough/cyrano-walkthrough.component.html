@@ -11,7 +11,7 @@
             <!-- <lib-icon-btn class="closebtn" (click)="close()">
                 <img src="/assets/imgs/closebtn.png" />
              </lib-icon-btn> -->
-            <p [id]="'descr-' + step.id" *ngFor="let descr of step.textDescr" [innerHTML]="descr"></p>
+            <p [id]="'descr-' + step.id" *ngFor="let descr of step.descr" [innerHTML]="descr.text"></p>
         </ng-template>
 
     </ng-container>

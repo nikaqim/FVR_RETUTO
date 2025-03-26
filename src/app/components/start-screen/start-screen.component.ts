@@ -55,10 +55,6 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
     // console.log("onInputChnge:this.steps",this.steps)
   }
 
-  isArray(textDescr:Object){
-    return Array.isArray(textDescr)
-  }
-
   reverseMarkup(descr:string){
     return this.walkService.reverseMarkUp(descr);
   }

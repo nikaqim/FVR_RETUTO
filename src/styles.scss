@@ -106,8 +106,16 @@ walkthrough-container {
     box-shadow:  none !important;
 }
 
-.wkt-content p {
+.wkt-content p:first-child {
     font-size: 16px;
+    line-height: 160%;
+    text-shadow: 0px 0px 5.74px rgba(255, 255, 255, 1);
+    margin-bottom: 32px;
+    padding-top: 32px;
+}
+
+.wkt-content p:not(:first-child) {
+    font-size: 10px;
     line-height: 160%;
     text-shadow: 0px 0px 5.74px rgba(255, 255, 255, 1);
 }

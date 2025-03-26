@@ -176,8 +176,15 @@ export class CyranoWalkthroughComponent implements
           const screen = document.querySelector(".screen-container.onwalk");
 
           if(screen && el){
+            // readjust position so don't get out of screen
             const scr = screen.getBoundingClientRect();
-            el.style.left = scr.left + 'px'; // readjust position so don't get out of screen
+            const elPos = el.getBoundingClientRect();
+
+            if(elPos.top < scr.top){
+              el.style.top = scr.top + 'px';
+            }
+            
+            el.style.left = scr.left + 'px'; 
 
             // console.log(`ScreenTop:${scr.top} Left:${scr.left} Bottom:${scr.bottom} \n 
             //   Right:${scr.right} Width:${scr.width} Height:${scr.height}`);

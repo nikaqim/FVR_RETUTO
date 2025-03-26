@@ -7,7 +7,7 @@ import { StorageId } from '../enums/localstorageData.enum';
 
 import { CyranoTutorial } from '../model/cyrano-walkthrough.model';
 import { CyranoTutorialConfig } from '../model/cyrano-walkthrough-cfg.model';
-import { WalkStepMap, WalkDescrMap } from '../model/cyrano-walkthrough-screenmap.model';
+import { WalkStepMap, WalkDescrMap, WalkDescr } from '../model/cyrano-walkthrough-screenmap.model';
 
 import { WalkthroughComponent } from 'angular-walkthrough';
 
@@ -123,11 +123,12 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     return this.walkconfig;
   }
 
-  implementArrMarkup(descr:string[]): string[]{
-    const rtnMarkups:string[] = [];
+  implementArrMarkup(descr:WalkDescr[]): WalkDescr[]{
+    const rtnMarkups:WalkDescr[] = [];
 
     descr.forEach(data => {
-      rtnMarkups.push(data.replace(/##\s*(.*?)\s*##/g, '<b>$1</b>'));
+      data.text = data.text.replace(/##\s*(.*?)\s*##/g, '<b>$1</b>');
+      rtnMarkups.push(data);
     });
 
     return rtnMarkups;
@@ -137,11 +138,12 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     return descr.replace(/##\s*(.*?)\s*##/g, '<b>$1</b>');
   }
 
-  reverseArrMarkup(descr:string[]): string[]{
-    let rtnMarkups:string[] = [];
+  reverseArrMarkup(descr:WalkDescr[]): WalkDescr[]{
+    let rtnMarkups:WalkDescr[] = [];
 
     descr.forEach(data => {
-      rtnMarkups.push(data.replace(/<b>\s*(.*?)\s*<\/b>/g, '## $1 ##'));
+      data.text = data.text.replace(/<b>\s*(.*?)\s*<\/b>/g, '## $1 ##');
+      rtnMarkups.push(data);
     });
 
     return rtnMarkups;
@@ -246,7 +248,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
             // ensure no duplicated step
             this.tabulatedId.push(step.id);
             
-            step.textDescr = this.implementArrMarkup(step.textDescr);
+            step.descr = this.implementArrMarkup(step.descr);
             // if(!Array.isArray(step.textDescr)){
             //   step.textDescr = this.implementMarkUp(step.textDescr);
             // } else {
@@ -271,8 +273,8 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   tabulateDescr(steps:CyranoTutorial[]){
     let alldescr:WalkDescrMap = {}; 
     steps.forEach((step, idx) =>{
-      step.textDescr.forEach((descr,idx)=>{
-        alldescr[step.id + '_' + idx] = descr;
+      step.descr.forEach((descr,idx)=>{
+        alldescr[step.id + '_' + idx] = descr.text;
       })
       
     });
@@ -298,7 +300,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
       for(let [index, el] of this.walkconfig[screen].entries()){
         if(el.id === stepId){
           // update text
-          el.textDescr[descrIdx] = text;
+          el.descr[descrIdx].text = text;
           this.restartTabulatedIds = true;
           
           this.steps = this.tabulateStep(this.walkconfig);

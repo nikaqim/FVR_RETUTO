@@ -5,11 +5,17 @@
             "nextStepId": "walk2",
             "focusElementId": "#forfeit",
             "contentAlign": "left",
-            "contentVertAlign": "below",
+            "contentVertAlign": "top",
             "showArrow": true,
             "closeAnywhere": false,
             "showFinishBtn": true,
-            "textDescr": ["Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore ##magna aliqua##. Ut enim ad minim veniam, quis nostrud exerc", "Note: All your data from this tool will be deleted after it is closed and will not be shared with anyone else for any reason."]
+            "descr": [{
+                "text": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore ##magna aliqua##. Ut enim ad minim veniam, quis nostrud exerc",
+                "style":{}
+            }, {
+                "text":"Note: All your data from this tool will be deleted after it is closed and will not be shared with anyone else for any reason.",
+                "style":{}
+            }]
         }
     ],
     "Timer": [
@@ -23,7 +29,9 @@
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": ["Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"]
+        "descr": [{
+            "text": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"
+        }]
     }], 
     "Alert": [
     {
@@ -36,7 +44,9 @@
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": ["Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"]
+        "descr": [{
+            "text":"Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"
+        }]
     }],
     "Selfie": [
     {
@@ -48,7 +58,9 @@
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": ["Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do"]
+        "descr": [{
+            "text": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do"
+        }]
     }],
     "Video": [],
     "Outfit": [],
