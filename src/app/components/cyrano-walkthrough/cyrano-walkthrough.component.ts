@@ -149,6 +149,7 @@ export class CyranoWalkthroughComponent implements
     onResize(event: Event) {
         // console.log("screen on resize...");
         // this.construct_walk();
+        this.reset();
         this.close();
     }
 
@@ -180,14 +181,20 @@ export class CyranoWalkthroughComponent implements
             const scr = screen.getBoundingClientRect();
             const elPos = el.getBoundingClientRect();
 
-            if(elPos.top < scr.top){
+            if(window.innerWidth < 551){
+              
+              el.style.top =(elPos.top + 56) + 'px';
+
+            } else  if(elPos.top < scr.top){
+
               el.style.top = scr.top + 'px';
+
             }
             
-            el.style.left = scr.left + 'px'; 
+            el.style.left = (scr.left + 8) + 'px'; 
 
-            // console.log(`ScreenTop:${scr.top} Left:${scr.left} Bottom:${scr.bottom} \n 
-            //   Right:${scr.right} Width:${scr.width} Height:${scr.height}`);
+            console.log(`ScreenTop:${scr.top} Left:${scr.left} Bottom:${scr.bottom} \n 
+              Right:${scr.right} Width:${scr.width} Height:${scr.height}`);
           }
 
           this.arrowService.drawArrow(fromEl, toEl, this.activeArrowId);

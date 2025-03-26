@@ -50,7 +50,7 @@
 
         > div:not(.nav-container) {
             width: 321px;
-            min-height: 569px !important;
+            min-height: 569px;
             height: 85%;
             position: relative;
             border: 1px solid white;
@@ -103,7 +103,22 @@
     .screen-panel.desktop {
         display: none !important;
     }
+
+    .screen-container.onwalk .closebtn {
+        position: absolute;
+        top: 52px !important;
+    }
 }
+
+@media only screen and (max-width:550px){
+    .screen-panel > div:not(.nav-container) {
+        width: (100%) !important;
+        min-height: unset !important;
+        height: 100vh !important;
+        border: none !important;
+    }
+}
+
 
 
 .vertbtn-container {

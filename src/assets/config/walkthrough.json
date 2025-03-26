@@ -14,7 +14,11 @@
                 "style":{}
             }, {
                 "text":"Note: All your data from this tool will be deleted after it is closed and will not be shared with anyone else for any reason.",
-                "style":{}
+                "style":{
+                    "fontSize": "10px",
+                    "lineHeight": "160%",
+                    "textShadow": "0px 0px 5.74px rgba(255, 255, 255, 1)"
+                }
             }]
         }
     ],
