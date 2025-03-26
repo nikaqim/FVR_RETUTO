@@ -21,6 +21,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   private tutorNavigateSubject = new BehaviorSubject<string>("");
   private startTutoSubject = new BehaviorSubject<string>("");
   private swiperNavSubject = new BehaviorSubject<string>("");
+  private closeTutoSubject = new BehaviorSubject<boolean>(false);
 
   private walkConfigSubject = new BehaviorSubject<CyranoTutorialConfig>({});
   // private walkConfigSubject = new Subject<CyranoTutorialConfig>();
@@ -35,6 +36,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   
   walkconfig: CyranoTutorialConfig = {};
   tabulatedId:string[] = [];
+  activeId:string = '';
 
   constructor(
     private httpClient:HttpClient,
@@ -49,6 +51,37 @@ import { WalkthroughComponent } from 'angular-walkthrough';
 
   unregister(id:string){
     this.walkthroughs.delete(id);
+  }
+
+  getParentPosition(child: HTMLElement, targetClass:string){
+    let parent = child.parentElement;
+
+    while (parent && !parent.classList.contains(targetClass)) {
+      parent = parent.parentElement;
+    }
+  
+    if (parent) {
+      // 1. CSS position (e.g., relative, absolute)
+      const computedStyle = window.getComputedStyle(parent);
+      const cssPosition = computedStyle.position;
+  
+      // 2. Offset position (x, y)
+      const rect = parent.getBoundingClientRect();
+      const x = rect.left + window.scrollX;
+      const y = rect.top + window.scrollY;
+  
+      console.log('CSS Position:', cssPosition);
+      console.log('Offset X:', x, 'Y:', y);
+  
+      return {
+        cssPosition,
+        x,
+        y,
+        element: parent
+      };
+    }
+  
+    return null;
   }
 
   getWalkhroughData(): Observable<CyranoTutorialConfig> {
@@ -122,17 +155,34 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     return this.tutorNavigateSubject.asObservable();
   }
 
+  closeTuto(){
+    console.log("this.startTuto");
+    this.closeTutoSubject.next(true);
+  }
+
+  onTutoClose(){
+    return this.closeTutoSubject.asObservable();
+  }
+
   onSwiperChanged(){
     return this.swiperNavSubject.asObservable();
   }
 
   startTuto(id:string){
-    console.log("this.startTuto");
+    console.log("this.startTuto->", id);
     this.startTutoSubject.next(id);
   }
 
   onStartTuto(){
     return this.startTutoSubject.asObservable();
+  }
+
+  setActiveId(id:string){
+    this.activeId = id;
+  }
+
+  getActiveId():string {
+    return this.activeId;
   }
 
   getById(id: string): WalkthroughComponent | undefined {

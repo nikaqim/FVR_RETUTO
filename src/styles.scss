@@ -99,17 +99,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // walkthrough component overwrite
 walkthrough-container {
     overflow: hidden;
-    // z-index: -1 !important;
+    z-index: -1 !important;
 }
 
 .wkt-zone.backdrop {
     box-shadow:  none !important;
 }
 
+.wkt-content-block {
+    // transition: left 0.5s ease-in-out;
+}
 @media only screen and (min-width:551px){
     .wkt-content-block {
         width: 20%;
         max-width: 200px;
+        // margin-left: 3em !important;
+        // margin-left: 5% !important;
         // top: 80px !important;
         min-width: unset !important;
         // padding-top: 44px !important;

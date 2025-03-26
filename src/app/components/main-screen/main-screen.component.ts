@@ -71,7 +71,6 @@ export class MainScreenComponent implements OnInit, OnDestroy {
 
     this.subs.add(
       this.walkService.onFinishLoadWalkThru().subscribe((data)=>{
-        console.log('tuto data -> ',data)
         this.tutoData = this.walkService.getConfig();      
         this.panels = Object.keys(this.tutoData);
       })
@@ -83,7 +82,6 @@ export class MainScreenComponent implements OnInit, OnDestroy {
   }
 
   setActiveBtn(id: string){
-    console.log("this.setActiveBtn:",id);
     if(id !== ''){
       this.walkthroughActive = id;
       this.btnGroupService.notifyButtonGrpReady(id);
@@ -91,6 +89,27 @@ export class MainScreenComponent implements OnInit, OnDestroy {
       this.walkthroughActive = '';
     }
     
+  }
+
+  isActiveScreen(panelId:string):boolean{
+    if(this.walkthroughActive !== ''){
+      let screenId = this.walkService.getScreenById(this.walkService.getActiveId());
+      return panelId === screenId
+    }
+    
+    return false;
+  }
+
+  /**
+   * Close walkthrough
+   */
+  closeWalkthrough(){
+    const container = document.querySelector('.wkt-finish-link');
+    if (container) {
+        (container as HTMLElement).click();
+
+        this.walkService.closeTuto();
+    }
   }
 
   ngOnDestroy(): void {

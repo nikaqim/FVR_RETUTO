@@ -80,6 +80,12 @@ export class CyranoWalkthroughComponent implements
       )
 
       this.subs.add(
+        this.tutoService.onTutoClose().subscribe((status:boolean)=>{
+            this.close()
+        })
+      )
+
+      this.subs.add(
         WalkthroughComponent.onOpen.subscribe((comp: WalkthroughComponent)=>{
           console.log(`#${comp.id} is open & point to el${comp.focusElementSelector} -> alreadyshow ${WalkthroughComponent.walkthroughHasShow()}`);
         })
@@ -90,6 +96,7 @@ export class CyranoWalkthroughComponent implements
         .subscribe((comt: WalkthroughNavigate) => {
           const current = this.tutoService.getById(comt.next.id);
           this.activeId = comt.next.id;
+          this.tutoService.setActiveId(this.activeId);
           this.isOpen.emit(current?.focusElementSelector.replace("#",''));
           
           if(current){
@@ -113,7 +120,7 @@ export class CyranoWalkthroughComponent implements
   
       this.subs.add(
         this.tutoService.onStartTuto().subscribe((id:string)=>{
-          console.log("this.data=>",this.data);
+          console.log("this.data=>",id);
           
           this.open(id);
           
@@ -168,7 +175,20 @@ export class CyranoWalkthroughComponent implements
         console.log('this.activeArrowId:',this.activeArrowId);
 
         setTimeout(()=>{
+
+          const el = document.querySelector(".wkt-content-block") as HTMLElement;
+          const screen = document.querySelector(".screen-container.onwalk");
+
+          if(screen && el){
+            const scr = screen.getBoundingClientRect();
+            el.style.left = scr.left + 'px'; // readjust position so don't get out of screen
+
+            // console.log(`ScreenTop:${scr.top} Left:${scr.left} Bottom:${scr.bottom} \n 
+            //   Right:${scr.right} Width:${scr.width} Height:${scr.height}`);
+          }
+
           this.arrowService.drawArrow(fromEl, toEl, this.activeArrowId);
+
         }, 150)
       }
       
@@ -243,6 +263,7 @@ export class CyranoWalkthroughComponent implements
         if(this.steps.length > 0){
           this.open(this.steps[0].id);
           this.activeId = this.steps[0].id;
+          this.tutoService.setActiveId(this.activeId);
           this.tutoService.activateSwipeNav(this.steps[0].id);
         }
       }
@@ -270,6 +291,8 @@ export class CyranoWalkthroughComponent implements
       if (targetWalkthrough) {
           targetWalkthrough.open();
           this.activeId = this.steps[0].id;
+          this.tutoService.setActiveId(this.activeId);
+          console.log("this.activeId",this.activeId)
           this.tutoService.activateSwipeNav(stepId);
           this.isOpen.emit(this.steps[0].focusElementId.replace('#',''));
 
@@ -297,6 +320,7 @@ export class CyranoWalkthroughComponent implements
         // remove active class
         this.activeScreenId = '';
         this.activeId = '';
+        this.tutoService.setActiveId(this.activeId);
         this.isOpen.emit('');
 
         this.arrowService.removeAll();

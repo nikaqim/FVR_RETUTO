@@ -5,7 +5,11 @@
         </div>
 
         <div #allScreenView class="desktop screen-panel">
-            <div class="screen-container" *ngFor="let panel of panels" [id]="panel">
+            <div class="screen-container {{isActiveScreen(panel) ? 'onwalk': ''}}" *ngFor="let panel of panels" [id]="panel">
+                <lib-icon-btn class="closebtn" (click)="closeWalkthrough()">
+                    <img src="/assets/imgs/closebtn.png" />
+                 </lib-icon-btn>
+
                 <div class="btn-container {{walkthroughActive !== '' ? 'onwalk': ''}}">
                     <!-- to be made into a component -->
                      <div *ngFor="let btngrp of buttonGroup">

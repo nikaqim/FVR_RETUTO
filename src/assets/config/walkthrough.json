@@ -43,7 +43,7 @@
         "id":"walk4",
         "prevStepId":"walk3",
         "focusElementId": "#face",
-        "contentAlign": "left",
+        "contentAlign": "center",
         "contentVertAlign": "above",
         "showArrow": true,
         "closeAnywhere": false,

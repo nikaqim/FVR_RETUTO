@@ -58,7 +58,6 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
     // on walkthru navigate next focus nextElement/btn 
     this.walkService.onTutoNavigation().subscribe((btnId:string)=>{
       if(btnId){
-        // console.log("BtnClick:",btnId, this.btnService.getScreenContainerId(btnId));
         const parentId = this.btnService.getScreenContainerId(btnId)
         this.walkService.scrollIntoView(parentId)
         
@@ -87,7 +86,6 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
 
  ngOnChanges(changes: SimpleChanges): void {
      if(changes['id']){
-      // console.log('this.activeId',this.activeId, 'screenId', this.screenId);
       this.isTypeVertical = this.type === 'vert';
       
       this.buttons.forEach(btn => {
@@ -102,7 +100,7 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
   }
 
   getButtonPosition(index: number, total: number) {
-    const radius = 50 + (total * 7); // Dynamically increase arc size
+    const radius = 50 + (total * 5); // Dynamically increase arc size
     const startAngle = Math.PI / 2; // Start at 180 degrees (semi-circle)
     const endAngle = (3 * Math.PI)/2; // End at 360 degrees
 
@@ -122,7 +120,6 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
   assignMain(btn:Button){
     if(btn.main && this.mainAssigned === ''){
       this.mainAssigned = btn.id;
-      console.log(this.mainAssigned)
     } 
     
     return this.mainAssigned;
