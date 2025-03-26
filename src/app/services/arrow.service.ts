@@ -17,8 +17,6 @@ export class ArrowService {
         const toElement = document.getElementById(toId);
         // const toElement = document.querySelector(toId);
 
-        console.log(`drawing arrow ${fromId} to ${toId}`);
-
         if (!fromElement || !toElement) {
             if(!fromElement){
                 console.warn(`from element not found ${fromId}`);
@@ -54,7 +52,6 @@ export class ArrowService {
         line.setOptions
 
         this.lines.set(arrowId, line); // ✅ Store reference to remove later
-        console.log(this.lines);
     }
 
     // ✅ Remove an arrow by ID
@@ -65,11 +62,9 @@ export class ArrowService {
             this.lines.delete(arrowId);
         }
 
-        console.log(this.lines);
     }
 
     removeAll(){
-        console.log(this.lines);
         Array.from(this.lines.keys())
             .forEach(el => {
                 this.lines.get(el).hide();
@@ -77,8 +72,6 @@ export class ArrowService {
         });
 
         this.lines.clear();
-
-        console.log(this.lines);
     }
 
     // ✅ Redraw all arrows (e.g., when resizing window)

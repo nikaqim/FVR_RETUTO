@@ -302,8 +302,8 @@ export class CyranoWalkthroughComponent implements
           targetWalkthrough.open();
           this.activeId = this.steps[0].id;
           this.tutoService.setActiveId(this.activeId);
-          console.log("this.activeId",this.activeId)
           this.tutoService.activateSwipeNav(stepId);
+          
           this.isOpen.emit(this.steps[0].focusElementId.replace('#',''));
 
           if(WalkthroughComponent.walkthroughHasShow()){

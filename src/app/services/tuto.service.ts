@@ -39,7 +39,7 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   constructor(
     private httpClient:HttpClient,
     private localStorage:LocalStorageService) {
-      console.log("in tuto construct")
+      // console.log("in tuto construct")
       this.loadWalkthrough();
   }
 
@@ -68,8 +68,8 @@ import { WalkthroughComponent } from 'angular-walkthrough';
       const x = rect.left + window.scrollX;
       const y = rect.top + window.scrollY;
   
-      console.log('CSS Position:', cssPosition);
-      console.log('Offset X:', x, 'Y:', y);
+      // console.log('CSS Position:', cssPosition);
+      // console.log('Offset X:', x, 'Y:', y);
   
       return {
         cssPosition,
@@ -176,7 +176,6 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   }
 
   closeTuto(){
-    console.log("this.startTuto");
     this.closeTutoSubject.next(true);
   }
 
@@ -189,7 +188,6 @@ import { WalkthroughComponent } from 'angular-walkthrough';
   }
 
   startTuto(id:string){
-    console.log("this.startTuto->", id);
     this.startTutoSubject.next(id);
   }
 
@@ -279,13 +277,13 @@ import { WalkthroughComponent } from 'angular-walkthrough';
       
     });
 
-    console.log("alldescr",alldescr)
+    // console.log("alldescr",alldescr)
 
     return alldescr;
   }
 
   getAllDescr(){
-    console.log("description list", this.descrList);
+    // console.log("description list", this.descrList);
     return this.descrList;
   }
 

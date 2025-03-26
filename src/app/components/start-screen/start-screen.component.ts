@@ -35,8 +35,6 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
       }
 
       this.steps = JSON.parse(JSON.stringify(tmp));
-      console.log("this.steps",this.steps);
-
   }
 
   ngAfterViewInit(): void {
