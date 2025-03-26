@@ -9,7 +9,7 @@
             "showArrow": true,
             "closeAnywhere": false,
             "showFinishBtn": true,
-            "textDescr": "Lorem ipsum ##amet##, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            "textDescr": ["Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore ##magna aliqua##. Ut enim ad minim veniam, quis nostrud exerc", "Note: All your data from this tool will be deleted after it is closed and will not be shared with anyone else for any reason."]
         }
     ],
     "Timer": [
@@ -23,7 +23,7 @@
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"
+        "textDescr": ["Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"]
     }], 
     "Alert": [
     {
@@ -36,7 +36,7 @@
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"
+        "textDescr": ["Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"]
     }],
     "Selfie": [
     {
@@ -48,7 +48,7 @@
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do"
+        "textDescr": ["Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do"]
     }],
     "Video": [],
     "Outfit": [],

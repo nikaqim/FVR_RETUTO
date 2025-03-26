@@ -106,6 +106,12 @@ walkthrough-container {
     box-shadow:  none !important;
 }
 
+.wkt-content p {
+    font-size: 16px;
+    line-height: 160%;
+    text-shadow: 0px 0px 5.74px rgba(255, 255, 255, 1);
+}
+
 .wkt-content-block {
     // transition: left 0.5s ease-in-out;
 }

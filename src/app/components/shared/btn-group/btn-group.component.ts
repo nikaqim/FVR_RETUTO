@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
-// import { WsService } from '../../../services/ws.service';
 
 import { BtnGroupService } from '../../../services/btn.service';
 import { mainAssigned, ButtonGroup } from './btn-group.model';
@@ -35,22 +34,19 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
   @Input() activeId:string = '';
 
   private subs = new Subscription();  
-  // mainAssigned:mainAssigned = {};
+
   mainAssigned:string = '';
   vertButtons: Button[] = [];
   arcButtons: Button[] = [];
   baseButtons: Button[] = [];
 
   buttonIds:string[] = [];
-  // parentScreenContainer;
 
   @Output() ButtonGroupReady = new EventEmitter<string>();
-  //  @Input() buttonGroup :ButtonGroup[] = [];
 
- isTypeVertical = false;
+  isTypeVertical = false;
 
  constructor(
-    // private wsService: WsService,
     private btnService: BtnGroupService,
     private walkService: WalkthroughConfigService
   ){
@@ -77,11 +73,6 @@ export class BtnGroupComponent implements OnChanges, AfterViewInit, OnInit, OnDe
     });
   }
 
-  // // ws service for config update
-  // this.subs.add(
-  //     this.wsService.listen('btnJsonUpdate').subscribe((msg:ButtonGroup) => {
-  //     })
-  // );
  }
 
  ngOnChanges(changes: SimpleChanges): void {

@@ -17,7 +17,7 @@ import {
 
 import { Subscription } from 'rxjs';
 
-// import { WsService } from '../../services/ws.service';
+import { WsService } from '../../services/ws.service';
 
 import { CyranoTutorial } from '../../model/cyrano-walkthrough.model';
 import { CyranoTutorialConfig } from '../../model/cyrano-walkthrough-cfg.model';
@@ -57,7 +57,7 @@ export class CyranoWalkthroughComponent implements
     activeArrowId: string = "";
 
     constructor( 
-      // private wsService:WsService,
+      private wsService:WsService,
       private tutoService: WalkthroughConfigService,
       private arrowService: ArrowService
     ){}
@@ -65,13 +65,13 @@ export class CyranoWalkthroughComponent implements
     ngOnInit(): void {
 
       // rxjs observable
-      // this.subs.add(
-      //   this.wsService.listen('walkJsonUpdate').subscribe((msg:CyranoTutorialConfig) => {
-      //     // console.log("walkJsonUpdate");
-      //       this.reset(msg)
+      this.subs.add(
+        this.wsService.listen('walkJsonUpdate').subscribe((msg:CyranoTutorialConfig) => {
+          // console.log("walkJsonUpdate");
+            this.reset(msg)
 
-      //   })
-      // );
+        })
+      );
 
       this.subs.add(
         this.tutoService.onNotifyTextChange().subscribe((msg:CyranoTutorialConfig)=>{
@@ -120,10 +120,7 @@ export class CyranoWalkthroughComponent implements
   
       this.subs.add(
         this.tutoService.onStartTuto().subscribe((id:string)=>{
-          console.log("this.data=>",id);
-          
           this.open(id);
-          
         })
       );
     }
@@ -172,7 +169,6 @@ export class CyranoWalkthroughComponent implements
         }
         
         this.activeArrowId = arrowId;
-        console.log('this.activeArrowId:',this.activeArrowId);
 
         setTimeout(()=>{
 
@@ -259,7 +255,7 @@ export class CyranoWalkthroughComponent implements
           }
         });
 
-        // console.log("this.steps:",this.steps);
+        console.log("this.steps:",this.steps);
         if(this.steps.length > 0){
           this.open(this.steps[0].id);
           this.activeId = this.steps[0].id;

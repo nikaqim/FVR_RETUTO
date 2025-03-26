@@ -9,7 +9,7 @@ export class CyranoTutorial {
     showArrow: boolean = true;
     closeAnywhere: boolean = false;
     showFinishBtn: boolean = false;
-    textDescr: string;
+    textDescr: string[];
     
     constructor(
         id: string = '',
@@ -17,7 +17,7 @@ export class CyranoTutorial {
         prevStepId: string = '',
         nextStepId: string = '',
         focusElementId: string = '',
-        textDescr:string = '',
+        textDescr:string[] = [],
         showArrow:boolean = true,
         showFinishBtn:boolean = false,
     ){

@@ -11,8 +11,6 @@ import {
 import { WalkthroughConfigService } from '../../services/tuto.service';
 import { CyranoTutorialConfig } from '../../model/cyrano-walkthrough-cfg.model';
 import { WalkDescrMap } from '../../model/cyrano-walkthrough-screenmap.model';
-
-// import { WsService } from '../../services/ws.service';
 @Component({
   selector: 'app-start-screen',
   templateUrl: './start-screen.component.html',
@@ -23,23 +21,21 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('inputDescr') inputElements!: QueryList<ElementRef>;
 
   constructor(
-    // private wsService: WsService,
     private walkService:WalkthroughConfigService
   ){}
 
   ngOnInit(): void {
 
-      // this.wsService.listen('btnJsonUpdate').subscribe((msg:string) => {
-      //   // console.log("start-screen - websocket msg@btnJsonUpdate ->", msg);
-      // });
-
       const tmp = this.walkService.getAllDescr();
           
       for(let step of Object.keys(tmp)){
-        tmp[step] = this.reverseMarkup(tmp[step]);
+        if(!Array.isArray(tmp[step])){
+          tmp[step] = this.reverseMarkup(tmp[step]);
+        }
       }
 
       this.steps = JSON.parse(JSON.stringify(tmp));
+      console.log("this.steps",this.steps);
 
   }
 
@@ -57,6 +53,10 @@ export class StartScreenComponent implements OnInit, AfterViewInit, OnDestroy {
     this.walkService.updateText(key, text);
 
     // console.log("onInputChnge:this.steps",this.steps)
+  }
+
+  isArray(textDescr:Object){
+    return Array.isArray(textDescr)
   }
 
   reverseMarkup(descr:string){

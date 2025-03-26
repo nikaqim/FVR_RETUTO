@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-// import { WsService } from './ws.service';
-
 import { LocalStorageService } from './local-storage.service';
 import { StorageId } from '../enums/localstorageData.enum';
 
@@ -125,8 +123,28 @@ import { WalkthroughComponent } from 'angular-walkthrough';
     return this.walkconfig;
   }
 
+  implementArrMarkup(descr:string[]): string[]{
+    const rtnMarkups:string[] = [];
+
+    descr.forEach(data => {
+      rtnMarkups.push(data.replace(/##\s*(.*?)\s*##/g, '<b>$1</b>'));
+    });
+
+    return rtnMarkups;
+  }
+
   implementMarkUp(descr:string){
     return descr.replace(/##\s*(.*?)\s*##/g, '<b>$1</b>');
+  }
+
+  reverseArrMarkup(descr:string[]): string[]{
+    let rtnMarkups:string[] = [];
+
+    descr.forEach(data => {
+      rtnMarkups.push(data.replace(/<b>\s*(.*?)\s*<\/b>/g, '## $1 ##'));
+    });
+
+    return rtnMarkups;
   }
 
   reverseMarkUp(descr:string){
@@ -225,14 +243,19 @@ import { WalkthroughComponent } from 'angular-walkthrough';
       if(this.walkconfig[screen].length){
         this.walkconfig[screen].forEach(step => {
           if(!this.tabulatedId.includes(step.id)){
-
-            step.textDescr = this.implementMarkUp(step.textDescr);
+            // ensure no duplicated step
+            this.tabulatedId.push(step.id);
+            
+            step.textDescr = this.implementArrMarkup(step.textDescr);
+            // if(!Array.isArray(step.textDescr)){
+            //   step.textDescr = this.implementMarkUp(step.textDescr);
+            // } else {
+              
+            // }
+            
             // store all step info
             this.steps.push(step);
-
-            // to ensure no duplication
-            this.tabulatedId.push(step.id);
-
+            
             // screen screen id for each step
             if(!this.step2screen[step.id]){
               this.step2screen[step.id] = screen;
@@ -247,29 +270,35 @@ import { WalkthroughComponent } from 'angular-walkthrough';
 
   tabulateDescr(steps:CyranoTutorial[]){
     let alldescr:WalkDescrMap = {}; 
-    for(let step of steps){
-      if(!alldescr[step.id]){
-        alldescr[step.id] = step.textDescr; 
-      }
-    }
+    steps.forEach((step, idx) =>{
+      step.textDescr.forEach((descr,idx)=>{
+        alldescr[step.id + '_' + idx] = descr;
+      })
+      
+    });
+
+    console.log("alldescr",alldescr)
 
     return alldescr;
   }
 
   getAllDescr(){
-    // console.log("description list");
+    console.log("description list", this.descrList);
     return this.descrList;
   }
 
   updateText(id:string, text:string){
     // get walkthrough id screen
-    let screen = this.getScreenById(id);
+    let stepId = id.split('_')[0];
+    let descrIdx = parseInt(id.split('_')[1]);
+    let screen = this.getScreenById(stepId);
+
 
     if(id && screen){
       for(let [index, el] of this.walkconfig[screen].entries()){
-        if(el.id === id){
+        if(el.id === stepId){
           // update text
-          el.textDescr = text;
+          el.textDescr[descrIdx] = text;
           this.restartTabulatedIds = true;
           
           this.steps = this.tabulateStep(this.walkconfig);
