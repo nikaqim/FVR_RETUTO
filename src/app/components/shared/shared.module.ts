@@ -6,13 +6,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RouterModule } from '@angular/router';
+
+import { MatIconModule } from '@angular/material/icon';
+
 import { WalkthroughModule } from 'angular-walkthrough';
 import { ButtonsModule } from 'nextsapien-component-lib';
 import { BtnGroupComponent } from './btn-group/btn-group.component';
 import { ButtonComponent } from './button/button.component';
-import { TutoWalkthroughModule } from '../tuto-walkthrough/tuto-walkthrough.module';
 import { LanguageSelectorComponent } from './language-selector/language-selector.component';
-import { CyranoTutorialModule } from 'cyranoTutorial';
+// import { CyranoTutorialModule } from 'cyranoTutorial';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -31,8 +33,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     WalkthroughModule,
     HttpClientModule,
+    MatIconModule,
     ButtonsModule,
-    CyranoTutorialModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       useDefaultLang: true,
@@ -48,8 +50,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule,
     WalkthroughModule,
     RouterModule,
+    FormsModule,
+    MatIconModule,
     ButtonsModule,
-    CyranoTutorialModule,
     BtnGroupComponent,
     ButtonComponent,
     LanguageSelectorComponent

@@ -20,59 +20,22 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="left">
-                textUpdate1
-            </div>
-            <div class="right">
-                <input type="text"/>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="left">
-                textUpdate1
-            </div>
-            <div class="right">
-                <input type="text"/>
+        <div>
+            <div class="row" *ngFor="let step of steps | keyvalue">
+                <div class="left">
+                    {{ step.key }}
+                </div>
+                <div class="right">
+                    <input 
+                        #inputDescr 
+                        type="text" 
+                        [name]="step.key" 
+                        [(ngModel)]="step.value" 
+                        (input)="onInputChange(step.key, $event)"/>
+                </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="left">
-                textUpdate1
-            </div>
-            <div class="right">
-                <input type="text"/>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="left">
-                textUpdate1
-            </div>
-            <div class="right">
-                <input type="text"/>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="left">
-                textUpdate1
-            </div>
-            <div class="right">
-                <input type="text"/>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="left">
-                textUpdate1
-            </div>
-            <div class="right">
-                <input type="text"/>
-            </div>
-        </div>
+        
         
     </div>
 

@@ -21,6 +21,18 @@
         top: 24px;
         left: 64px;
     }
+
+    .screen-container.onwalk .closebtn {
+        display: block !important;
+        position: absolute;
+        left: 20px;
+        top: 20px;
+    }
+
+    .screen-container .closebtn {
+        display: none;
+    }
+
     
     .screen-panel::-webkit-scrollbar {
         display: none;
@@ -37,7 +49,8 @@
         flex-direction: column;
 
         > div:not(.nav-container) {
-            width: 400px;
+            width: 321px;
+            min-height: 569px;
             height: 85%;
             position: relative;
             border: 1px solid white;
@@ -53,6 +66,7 @@
         top: 16px;
         display: flex;
         flex-direction: column;
+        // gap: 16px;
         gap: 0px;
         z-index: 0;
     }
@@ -89,7 +103,22 @@
     .screen-panel.desktop {
         display: none !important;
     }
+
+    .screen-container.onwalk .closebtn {
+        position: absolute;
+        top: 52px !important;
+    }
 }
+
+@media only screen and (max-width:550px){
+    .screen-panel > div:not(.nav-container) {
+        width: (100%) !important;
+        min-height: unset !important;
+        height: 100vh !important;
+        border: none !important;
+    }
+}
+
 
 
 .vertbtn-container {
