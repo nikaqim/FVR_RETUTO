@@ -1,3 +1,4 @@
+import { WalkDescr } from "./cyrano-walkthrough-screenmap.model";
 export class CyranoTutorial {
     id: string;
     label:string;
@@ -7,9 +8,10 @@ export class CyranoTutorial {
     contentAlign: string;
     contentVertAlign: string;
     showArrow: boolean = true;
+    focusBackdrop: boolean = false;
     closeAnywhere: boolean = false;
     showFinishBtn: boolean = false;
-    textDescr: string;
+    descr: WalkDescr[];
     
     constructor(
         id: string = '',
@@ -17,7 +19,7 @@ export class CyranoTutorial {
         prevStepId: string = '',
         nextStepId: string = '',
         focusElementId: string = '',
-        textDescr:string = '',
+        descr:WalkDescr[] = [],
         showArrow:boolean = true,
         showFinishBtn:boolean = false,
     ){
@@ -32,6 +34,6 @@ export class CyranoTutorial {
         this.showFinishBtn = showFinishBtn
         this.closeAnywhere = false;
 
-        this.textDescr = textDescr;
+        this.descr = descr;
     }
 }

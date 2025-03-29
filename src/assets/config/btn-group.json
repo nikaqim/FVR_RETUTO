@@ -6,36 +6,46 @@
             "buttons": [
                 {
                     "id": "forfeit",
-                    "icon": "/assets/imgs/forfeit_btn.png",
+                    "maticon": "logout", 
+                    "icon": "/assets/imgs/svg/forfeit.svg",
                     "label": "Forfeit",
+                    "size": "md", 
                     "action": "exitTutorial",
                     "visible": true
                 },
                 {
                     "id": "help",
-                    "icon": "/assets/imgs/help_btn.png",
+                    "maticon": "logout", 
+                    "icon": "/assets/imgs/svg/help.svg",
                     "label": "Help",
+                    "size": "md",
                     "action": "openHelp",
                     "visible": true
                 },
                 {
                     "id": "prep",
-                    "icon": "/assets/imgs/prep_btn.png",
+                    "maticon": "logout", 
+                    "icon": "/assets/imgs/svg/prep.svg",
                     "label": "Prep",
+                    "size": "md",
                     "action": "prepExec",
                     "visible": true
                 },
                 {
                     "id": "location",
-                    "icon": "/assets/imgs/location_btn.png",
+                    "maticon": "logout", 
+                    "icon": "/assets/imgs/svg/location.svg",
                     "label": "Location",
+                    "size": "md",
                     "action": "showLocation",
                     "visible": true
                 },
                 {
                     "id": "chat",
-                    "icon": "/assets/imgs/chat_btn.png",
+                    "maticon": "logout", 
+                    "icon": "/assets/imgs/svg/chat.svg",
                     "label": "Chat",
+                    "size": "md",
                     "action": "openChat",
                     "visible": true
                 }
@@ -48,46 +58,60 @@
             "buttons": [
                 {
                     "id": "more",
-                    "icon": "/assets/imgs/more_btn.png",
+                    "maticon": "logout", 
+                    "icon": "/assets/imgs/svg/more.svg",
                     "label": "More",
+                    "size": "sm",
                     "action": "openMenu",
                     "visible": true
                 },
                 {
                     "id": "begin",
-                    "icon": "/assets/imgs/begin.png",
+                    "maticon": "logout", 
+                    "icon": "/assets/imgs/svg/begin.svg",
                     "label": "Begin",
+                    "size": "md",
                     "action": "start",
                     "visible": true
                 },
+
                 {
                     "id": "outfit",
-                    "icon": "/assets/imgs/outfit_btn.png",
+                    "maticon": "logout", 
+                    "icon": "/assets/imgs/svg/outfit.svg",
                     "label": "Outfit",
+                    "size": "md",
                     "action": "seeOutfit",
                     "visible": true
                 },
                 {
                     "id": "video",
-                    "icon": "/assets/imgs/video_btn.png",
+                    "maticon": "logout", 
+                    "icon": "/assets/imgs/svg/video.svg",
                     "label": "Video",
+                    "size": "md",
                     "action": "openVideo",
                     "visible": true
                 },
                 {
                     "id": "face",
-                    "icon": "/assets/imgs/face_btn.png",
+                    "maticon": "logout", 
+                    "icon": "/assets/imgs/svg/face.svg",
                     "label": "Face",
+                    "size": "md",
                     "action": "openFace",
                     "visible": true
                 },
                 {
                     "id": "selfie",
-                    "icon": "/assets/imgs/selfie_video_btn.png",
+                    "maticon": "logout", 
+                    "icon": "/assets/imgs/svg/selfie.svg",
                     "label": "Selfie & Video",
+                    "size": "xl",
                     "action": "openSelfieVideo",
                     "visible": true,
-                    "main": true
+                    "main": true,
+                    "title": "-10m"
                 }
 
             ],

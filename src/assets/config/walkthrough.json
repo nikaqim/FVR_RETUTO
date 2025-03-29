@@ -4,12 +4,23 @@
             "id":"walk1",
             "nextStepId": "walk2",
             "focusElementId": "#forfeit",
+            "focusBackdrop": false,
             "contentAlign": "left",
-            "contentVertAlign": "below",
+            "contentVertAlign": "top",
             "showArrow": true,
             "closeAnywhere": false,
             "showFinishBtn": true,
-            "textDescr": "1. Lorem ipsum<b>dolor sit amet</b>,<br/>color sit ametdolor sit ametdolor sit ametdolor sit amet consectetur adipiscing elit."
+            "descr": [{
+                "text": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore ##magna aliqua##. Ut enim ad minim veniam, quis nostrud exerc",
+                "style":{}
+            }, {
+                "text":"Note: All your data from this tool will be deleted after it is closed and will not be shared with anyone else for any reason.",
+                "style":{
+                    "fontSize": "10px",
+                    "lineHeight": "160%",
+                    "textShadow": "0px 0px 5.74px rgba(255, 255, 255, 1)"
+                }
+            }]
         }
     ],
     "Timer": [
@@ -18,12 +29,15 @@
         "prevStepId":"walk1",
         "nextStepId": "walk3",
         "focusElementId": "#help",
-        "contentAlign": "center",
+        "focusBackdrop": true,
+        "contentAlign": "left",
         "contentVertAlign": "below",
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": "This is placeholder text often used<br/> in design templates to <br/>represent future content"
+        "descr": [{
+            "text": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"
+        }]
     }], 
     "Alert": [
     {
@@ -31,24 +45,30 @@
         "prevStepId":"walk2",
         "nextStepId": "walk4",
         "focusElementId": "#selfie",
+        "focusBackdrop": true,
         "contentAlign": "left",
         "contentVertAlign": "above",
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": "Bienvenue à la première étape du tutoriel. Suivez le guide pour en savoir plus."
+        "descr": [{
+            "text":"Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit"
+        }]
     }],
     "Selfie": [
     {
         "id":"walk4",
         "prevStepId":"walk3",
-        "focusElementId": "#chat",
-        "contentAlign": "left",
-        "contentVertAlign": "below",
+        "focusElementId": "#face",
+        "focusBackdrop": true,
+        "contentAlign": "center",
+        "contentVertAlign": "above",
         "showArrow": true,
         "closeAnywhere": false,
         "showFinishBtn": true,
-        "textDescr": "Bienvenue à la première étape du tutoriel. Suivez le guide pour en savoir plus."
+        "descr": [{
+            "text": "Lorem ipsum dolor sit amet, consectetur adipisizzle elit, sed do"
+        }]
     }],
     "Video": [],
     "Outfit": [],
