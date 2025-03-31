@@ -5,13 +5,18 @@
         </div>
 
         <div #allScreenView class="desktop screen-panel">
-            <div class="screen-container" *ngFor="let panel of panels" [id]="panel">
-                <div class="btn-container">
+            <div class="screen-container {{isActiveScreen(panel) ? 'onwalk': ''}}" *ngFor="let panel of panels" [id]="panel">
+                <lib-icon-btn class="closebtn" (click)="closeWalkthrough()">
+                    <img src="/assets/imgs/closebtn.png" />
+                 </lib-icon-btn>
+
+                <div class="btn-container {{walkthroughActive !== '' ? 'onwalk': ''}} {{ highlightAll(isActiveScreen(panel)) ? 'highlightall' : ''}}">
                     <!-- to be made into a component -->
                      <div *ngFor="let btngrp of buttonGroup">
                         <app-btn-group 
                             [id]="panel + btngrp.id" 
                             [screenId]="panel"
+                            [activeId]="walkthroughActive"
                             [type]="btngrp.layout" 
                             [buttons]="btngrp.buttons"
                             (ButtonGroupReady)="setBtnGroupReady($event)">
@@ -22,13 +27,18 @@
         </div>
 
         <div class="mobile screen-panel">
-            <div class="screen-container" [id]="'mob'">
-                <div class="btn-container">
+            <div class="screen-container {{walkthroughActive !== '' ? 'onwalk': ''}}" [id]="'mob'">
+                <lib-icon-btn class="closebtn" (click)="closeWalkthrough()">
+                    <img src="/assets/imgs/closebtn.png" />
+                 </lib-icon-btn>
+                 
+                <div class="btn-container {{walkthroughActive !== '' ? 'onwalk': ''}}" >
                     <!-- to be made into a component -->
                      <div *ngFor="let btngrp of buttonGroup">
                         <app-btn-group 
                             [id]="'mob' + btngrp.id" 
                             [screenId]="'mob'"
+                            [activeId]="walkthroughActive"
                             [type]="btngrp.layout" 
                             [buttons]="btngrp.buttons"
                             (ButtonGroupReady)="setBtnGroupReady($event)">
@@ -39,7 +49,7 @@
         </div>
 
         <!-- <app-tuto-walkthrough></app-tuto-walkthrough> -->
-        <app-cyrano-walkthrough [data]="tutoData"></app-cyrano-walkthrough>
+        <app-cyrano-walkthrough [data]="tutoData" (isOpen)="setActiveBtn($event)"></app-cyrano-walkthrough>
         
     </div>
     

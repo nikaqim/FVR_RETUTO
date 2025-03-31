@@ -27,6 +27,13 @@
             "outputPath": "dist/reusetuto",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "google-libphonenumber",
+              "moment",
+              "inputmask",
+              "jsoneditor",
+              "nextsapien-component-lib"
+            ],
             "polyfills": [
               "zone.js"
             ],
@@ -45,14 +52,20 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              
+            ]
           },
           "configurations": {
             "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "1500kb",
                   "maximumError": "2mb"
                 },
                 {
